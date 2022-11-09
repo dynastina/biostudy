@@ -59,7 +59,9 @@ class PagesController extends Controller
                 ]);
             }
 
+            // 2 means actively login
             User::where('id', $user['id'])->update([
+                'is_logged_in' => 2,
                 'last_logged_in' => date('Y-m-d H:i:s')
             ]);
             
@@ -282,6 +284,10 @@ class PagesController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
+        
+        User::where('id', $user['id'])->update([
+            'is_logged_in' => 1,
+        ]);
 
         return redirect()->route('login')->with('success', true);;
     }

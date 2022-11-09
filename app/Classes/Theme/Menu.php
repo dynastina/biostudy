@@ -2,6 +2,7 @@
 
 namespace App\Classes\Theme;
 
+use Illuminate\Http\Request;
 use App\Classes\Theme\Metronic;
 use Illuminate\Support\Facades\Route;
 
@@ -37,11 +38,19 @@ class Menu
             }
 
             if ($menuCount != 0) {
-                echo '<li class="menu-section ' . ($rec === 0 ? 'menu-section--first' : '') . '">
-                    <h4 class="menu-text">' . $item['section'] . '</h4>
-                    <i class="menu-icon flaticon-more-v2"></i>
-                </li>';
+                echo '
+                    <div class="menu-item pt-1">
+                        <div class="menu-content">
+                            <span class="menu-heading fw-bold text-uppercase fs-7">' . $item['section'] . '</span>
+                        </div>
+                    </div>';
+
+                //     echo '<li class="menu-section ' . ($rec === 0 ? 'menu-section--first' : '') . '">
+                //     <h4 class="menu-text">' . $item['section'] . '</h4>
+                //     <i class="menu-icon flaticon-more-v2"></i>
+                // </li>';
             }
+            
         } elseif (isset($item['title'])) {
             $item_class = '';
             $item_attr = '';
@@ -98,7 +107,7 @@ class Menu
                 $item_class .= ' menu-item-active';
             }
 
-            echo '<li class="menu-item ' . $item_class . '" aria-haspopup="true" ' . $item_attr . '>';
+            // echo '<li class="menu-item ' . $item_class . '" aria-haspopup="true" ' . $item_attr . '>';
             if (isset($item['parent'])) {
                 echo '<span class="menu-link">';
             } else {
@@ -113,7 +122,7 @@ class Menu
                     $target = 'target="_blank"';
                 }
 
-                echo '<a ' . $target . ' href="' . $url . '" class="menu-link ' . (isset($item['submenu']) ? 'menu-toggle' : '') . '">';
+                // echo '<a ' . $target . ' href="' . $url . '" class="menu-link ' . (isset($item['submenu']) ? 'menu-toggle' : '') . '">';
             }
 
             // Menu arrow
@@ -130,17 +139,30 @@ class Menu
                 $bullet = 'line';
             }
 
-            // Menu icon OR bullet
-            if ($bullet == 'dot') {
-                echo '<i class="menu-bullet menu-bullet-dot"><span></span></i>';
-            } elseif ($bullet == 'line') {
-                echo '<i class="menu-bullet menu-bullet-line"><span></span></i>';
-            } elseif (config('layout.aside.menu.hide-root-icons') !== true && isset($item['icon']) && !empty($item['icon'])) {
-                self::renderIcon($item['icon']);
-            }
+            // dd(Route::current()->getName());
+
+            echo '
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link '. (str_contains(Route::current()->getName(), $item['page']) ? 'active' : '') .'" href="'. $url .'">
+                        <span class="menu-icon">
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->
+                            <span class="svg-icon svg-icon-2"> ';
+                                
+            
+            echo $item['icon'];
 
             // Badge
-            echo '<span class="menu-text">' . $item['title'] . '</span>';
+                            echo '
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-title">' . $item['title'] . '</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                ';
+            // echo '<span class="menu-text">' . $item['title'] . '</span>';
             if (isset($item['label'])) {
                 echo '<span class="menu-badge"><span class="label ' . $item['label']['type'] . '">' . $item['label']['value'] . '</span></span>';
             }
@@ -152,7 +174,7 @@ class Menu
                     echo '</a>';
                 }
 
-                echo '</li>';
+                // echo '</li>';
                 return;
             }
 
@@ -216,7 +238,7 @@ class Menu
                 echo '</div>';
             }
 
-            echo '</li>';
+            // echo '</li>';
         } else {
             foreach ($item as $key => $each) {
                 if (!is_int($key)) {

@@ -98,7 +98,7 @@ class ContentController extends Controller
         }
 
         return redirect()->route(self::$routePath.'.index')
-            ->with('success', self::$pageTitle.' created successfully.');
+            ->with('success', self::$pageTitle.' berhasil ditambahkan.');
     }
 
     public function show($id)
@@ -165,7 +165,7 @@ class ContentController extends Controller
         }
 
         return redirect()->route(self::$routePath.'.index')
-            ->with('success', self::$pageTitle.' updated successfully');
+            ->with('success', self::$pageTitle.' berhasil terupdate');
     }
 
     public function destroy(Request $req, $id)

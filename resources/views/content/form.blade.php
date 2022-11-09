@@ -1,26 +1,34 @@
-<div class="form-group">
-    {{ Form::label('page') }}
-    {{ Form::select('page', $contentPage, $content->page, ['class' => 'form-control' . ($errors->has('page') ? ' is-invalid' : ''), 'placeholder' => 'Page', 'required']) }}
-    {!! $errors->first('page', '<div class="invalid-feedback">:message</p>') !!}
-</div>
-<div class="form-group">
-    {{ Form::label('content_type') }}
-    {{ Form::select('content_type', $contentType, $content->content_type, ['class' => 'form-control' . ($errors->has('content_type') ? ' is-invalid' : ''), 'placeholder' => 'Content Type', 'required']) }}
-    {!! $errors->first('content_type', '<div class="invalid-feedback">:message</p>') !!}
-</div>
-<div class="form-group">
-    {{ Form::label('title') }}
-    {{ Form::text('title', $content->title, ['class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''), 'placeholder' => 'Title', 'required']) }}
-    {!! $errors->first('title', '<div class="invalid-feedback">:message</p>') !!}
-</div>
-<div class="form-group">
-    {{ Form::label('body') }}
-    {{ Form::textarea('body', $content->body, ['class' => 'form-control' . ($errors->has('body') ? ' is-invalid' : ''), 'placeholder' => 'Body']) }}
-    {!! $errors->first('body', '<div class="invalid-feedback">:message</p>') !!}
-</div>
-<div class="form-group">
-    {{ Form::label('file') }}
+
+    <div class="form-floating">
+        {{ Form::select('page', $contentPage, $content->page, ['class' => 'form-select mb-5' . ($errors->has('page') ? ' is-invalid' : ''), 'placeholder' => 'Select Page', 'required']) }}
+        {{ Form::label('page') }}
+        {!! $errors->first('page', '<div class="invalid-feedback">:message</p>') !!}
+    </div>
+    
+    <div class="form-floating">
+        {{ Form::select('content_type', $contentType, $content->content_type, ['class' => 'form-select mb-5' . ($errors->has('content_type') ? ' is-invalid' : ''), 'placeholder' => 'Select Content Type', 'required']) }}
+        {{ Form::label('content_type') }}
+        {!! $errors->first('content_type', '<div class="invalid-feedback">:message</p>') !!}
+    </div>
+
+    <div class="form-floating mb-5">
+        {{ Form::text('title', $content->title, ['class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''), 'placeholder' => 'Title', 'required']) }}
+        {{ Form::label('title') }}
+        {!! $errors->first('title', '<div class="invalid-feedback">:message</p>') !!}
+    </div>
+
+    <div class="form-floating mb-5">
+        {{ Form::textarea('body', $content->body, ['class' => 'form-control' . ($errors->has('body') ? ' is-invalid' : ''), 'placeholder' => 'Body']) }}
+        {{ Form::label('body') }}
+        {!! $errors->first('body', '<div class="invalid-feedback">:message</p>') !!}
+    </div>
+
+<div class="form-group mb-5">
     {{ Form::file('file', ['class' => 'form-control' . ($errors->has('file') ? ' is-invalid' : '')]) }}
+
+    @if(!empty($content->file))
+        <a href="{{ '/'.$content->file_dir.'/'.$content->file }}" class="btn btn-primary mt-5" target="_blank">{{ $content->file }}</a>
+    @endif
     {!! $errors->first('file', '<div class="invalid-feedback">:message</p>') !!}
 </div>
 {{-- <div class="form-group">
