@@ -77,18 +77,16 @@
                                             <!--end:Logo-->
                                             <!--begin:Media-->
                                             <div style="margin-bottom: 15px">
-                                                <img alt="Forgot Password Icon" src="{{ $message->embed(public_path() . '/img/email/icon-positive-vote-2.jpg') }}" />
+                                                <img alt="Thumbs Up Icon" src="{{ $message->embed(public_path() . '/img/email/icon-positive-vote-1.jpg') }}" />
                                             </div>
                                             <!--end:Media-->
                                             <!--begin:Text-->
                                             <div style="font-size: 14px; font-weight: 500; margin-bottom: 27px; font-family:Arial,Helvetica,sans-serif;">
-                                                <p style="margin-bottom:9px; color:#181C32; font-size: 22px; font-weight:700">Hai {{ $req['username'] }}!</p>
-                                                <p style="margin-bottom:2px; color:#7E8299">Silahkan tekan tombol dibawah untuk mereset password anda</p>
+                                                <p style="margin-bottom:9px; color:#181C32; font-size: 22px; font-weight:700">Hai {{ $req['name'] }}</p>
+                                                <p style="margin-bottom:2px; color:#7E8299">Terimakasih telah bergabung menggunakan aplikasi Triadhipa Logistics. <br> Selamat beraktivitas!</p>
                                             </div>
                                             <!--end:Text-->
-                                            <!--begin:Action-->
-                                            <a href='{{ route('login.forgot-password-process') }}?e={{ $req['encrypted_email'] }}&u={{ $req['username'] }}' target="_blank" style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500;">Reset Password</a>
-                                            <!--begin:Action-->
+                                            <a href='{{ route('login') }}' target="_blank" style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500;">Login Aplikasi</a>
                                         </div>
                                         <!--end:Email content-->
                                     </td>

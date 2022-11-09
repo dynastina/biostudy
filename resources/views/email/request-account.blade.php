@@ -86,6 +86,7 @@
                                                 <p style="margin-bottom:2px; color:#7E8299">User dengan email : {{ $req['email'] }} telah meminta request pembuatan akun. Silahkan daftarkan user tersebut dengan role yang anda setujui</p>
                                             </div>
                                             <!--end:Text-->
+                                            <a href='{{ route('login') }}' target="_blank" style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500;">Login Aplikasi</a>
                                         </div>
                                         <!--end:Email content-->
                                     </td>

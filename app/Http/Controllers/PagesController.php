@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Mail\Greeting;
 use App\Mail\ForgotPassword;
 use App\Mail\RequestAccount;
 use Illuminate\Http\Request;
@@ -45,6 +46,23 @@ class PagesController extends Controller
     public function login(Request $request)
     {
         if (Auth::attempt($request->only('username', 'password'))) {
+
+            $user = Auth::user();
+
+            if(empty($user['is_logged_in'])){
+                
+                Mail::to($user['email'])->send(new Greeting($user));
+                
+                User::where('id', $user['id'])->update([
+                    'is_logged_in' => 1,
+                    'last_logged_in' => date('Y-m-d H:i:s')
+                ]);
+            }
+
+            User::where('id', $user['id'])->update([
+                'last_logged_in' => date('Y-m-d H:i:s')
+            ]);
+            
             $request->session()->regenerate();
             return redirect()->route('dashboard');
         } else {
@@ -265,7 +283,7 @@ class PagesController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', true);;
     }
 
     public function dashboard()
