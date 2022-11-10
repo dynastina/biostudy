@@ -43,6 +43,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
+
+        $user = Auth::user();
+
+        User::where('id', $user['id'])->update([
+            'is_logged_in' => 1,
+        ]);
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();

@@ -37,6 +37,8 @@ class PagesController extends Controller
         if (auth()->user()) {
             return redirect()->route('dashboard');
         }
+
+        $user = Auth::user();
         
         $pageTitle = 'Triadhipa Logistics - One Best Expedition Solution for your Business Need';
 
@@ -173,6 +175,10 @@ class PagesController extends Controller
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
 
+                User::where('id', $user['id'])->update([
+                    'is_logged_in' => 1,
+                ]);
+
                 return redirect()->route('login')->with('failed', 'Forgot Password Failed');
 
             }
@@ -279,15 +285,19 @@ class PagesController extends Controller
 
     public function logout(Request $request)
     {
+        $user = Auth::user();
+
+        User::where('id', $user['id'])->update([
+            'is_logged_in' => 1,
+        ]);
+
         Auth::logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
         
-        User::where('id', $user['id'])->update([
-            'is_logged_in' => 1,
-        ]);
+        
 
         return redirect()->route('login')->with('success', true);;
     }
@@ -295,10 +305,14 @@ class PagesController extends Controller
     public function dashboard()
     {
         $userCount = User::count();
-        $roleCount = Role::count();
+        $userActive = User::where('is_logged_in', 2)->orderBy('last_logged_in', 'desc')->get()->take(5);
+        $userActiveCount = User::where('is_logged_in', 2)->orderBy('last_logged_in', 'desc')->count();
+
+        $user = Auth::user();
+        $role = Role::where('id', $user->role_id)->pluck('name')->first();
 
         $pageTitle = 'Dashboard';
 
-        return view('pages.dashboard', compact('userCount', 'roleCount', 'pageTitle'));
+        return view('pages.dashboard', compact('userCount', 'pageTitle', 'role', 'userActive','userActiveCount'));
     }
 }

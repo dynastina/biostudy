@@ -12,7 +12,7 @@
                 <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                     <!--begin::Item-->
                     <li class="breadcrumb-item text-muted">
-                        <a href="{{ route($routePath.'.index') }}" class="text-muted text-hover-primary">Content Management</a>
+                        <a href="{{ route($routePath.'.index') }}" class="text-muted text-hover-primary">{{ $pageTitle }} Management</a>
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
@@ -22,7 +22,7 @@
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item text-muted">
-                        <a href="{{ route($routePath.'.index') }}" class="text-muted text-hover-primary">Content</a>
+                        <a href="{{ route($routePath.'.index') }}" class="text-muted text-hover-primary">{{ $pageTitle }}</a>
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->

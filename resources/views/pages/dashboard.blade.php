@@ -94,7 +94,7 @@
                                                         <rect x="7" y="6" width="4" height="4" rx="2" fill="currentColor" />
                                                     </svg>
                                                 </span>
-                                                <!--end::Svg Icon-->Operasional</a>
+                                                <!--end::Svg Icon-->{{ $role }}</a>
                                             <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary mb-2">
                                                 <!--begin::Svg Icon | path: icons/duotune/communication/com011.svg-->
                                                 <span class="svg-icon svg-icon-4 me-1">
@@ -252,7 +252,7 @@
                         <!--begin::Title-->
                         <div class="card-title d-flex flex-column">
                             <!--begin::Amount-->
-                            <span class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">357</span>
+                            <span class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">{{ $userCount }}</span>
                             <!--end::Amount-->
                             <!--begin::Subtitle-->
                             <span class="text-gray-400 pt-1 fw-semibold fs-6">User Terdaftar</span>
@@ -264,31 +264,39 @@
                     <!--begin::Card body-->
                     <div class="card-body d-flex flex-column justify-content-end pe-0">
                         <!--begin::Title-->
-                        {{-- <span class="fs-6 fw-bolder text-gray-800 d-block mb-2">Today’s Heroes</span> --}}
+                        <span class="fs-6 fw-bolder text-gray-800 d-block mb-2">User Online</span>
                         <!--end::Title-->
                         <!--begin::Users group-->
                         <div class="symbol-group symbol-hover flex-nowrap">
-                            <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Alan Warden">
-                                <span class="symbol-label bg-warning text-inverse-warning fw-bold">A</span>
-                            </div>
-                            <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Michael Eberon">
-                                <img alt="Pic" src="{{ asset('metronic/dist') }}/assets/media/avatars/300-11.jpg" />
-                            </div>
-                            <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Susan Redwood">
-                                <span class="symbol-label bg-primary text-inverse-primary fw-bold">S</span>
-                            </div>
-                            <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Melody Macy">
-                                <img alt="Pic" src="{{ asset('metronic/dist') }}/assets/media/avatars/300-2.jpg" />
-                            </div>
-                            <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Perry Matthew">
-                                <span class="symbol-label bg-danger text-inverse-danger fw-bold">P</span>
-                            </div>
-                            <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Barry Walter">
-                                <img alt="Pic" src="{{ asset('metronic/dist') }}/assets/media/avatars/300-12.jpg" />
-                            </div>
-                            {{-- <a href="#" class="symbol symbol-35px symbol-circle" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">
-                                <span class="symbol-label bg-dark text-gray-300 fs-8 fw-bold">+42</span>
-                            </a> --}}
+                            @foreach($userActive as $key => $usrActive)
+                                @if(empty($usrActive['profile_image']))
+                                    @if($loop->iteration % 2 == 1)
+                                        <a href="{{ url('application/users/') . '/' . $usrActive['id'] }}">
+                                            <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="{{ $usrActive['name'] }}">
+                                                <span class="symbol-label bg-warning text-inverse-warning fw-bold">{{ $usrActive['name'][0] }}</span>
+                                            </div>
+                                        </a>
+                                    @else
+                                        <a href="{{ url('application/users/') . '/' . $usrActive['id'] }}">
+                                            <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="{{ $usrActive['name'] }}">
+                                                <span class="symbol-label bg-primary text-inverse-primary fw-bold">{{ $usrActive['name'][0] }}</span>
+                                            </div>
+                                        </a>
+                                    @endif
+                                @else
+                                    <a href="{{ url('application/users/') . '/' . $usrActive['id'] }}">
+                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="{{ $usrActive['name'] }}">
+                                            <img alt="Pic" src="{{ asset('metronic/dist') }}/assets/media/avatars/300-11.jpg" />
+                                        </div>
+                                    </a>
+                                @endif
+                            @endforeach
+                            @if(count($userActive) >= 5)
+                                <a class="symbol symbol-35px symbol-circle" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">
+                                    <span class="symbol-label bg-dark text-gray-300 fs-8 fw-bold">+{{ $userActiveCount - count($userActive) }}</span>
+                                </a>
+                                
+                            @endif
                         </div>
                         <!--end::Users group-->
                     </div>

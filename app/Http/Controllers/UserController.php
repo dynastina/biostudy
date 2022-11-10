@@ -50,7 +50,7 @@ class UserController extends Controller
     public function create()
     {
         $user = new User();
-        $roles = Role::pluck('name', 'name')->all();
+        $roles = Role::pluck('name', 'id')->all();
 
         $pageTitle = self::$pageTitle;
         $pageBreadcrumbs = self::$pageBreadcrumbs;
@@ -65,10 +65,17 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        request()->validate(User::$rules);
         $req = $request->all();
         $req['password'] = Hash::make($req['password']);
+
+        $roleName = Role::where('id', $req['roles'])->pluck('name', 'id')->first();
+        $req['role_id'] = $req['roles'];
+        $req['is_logged_in'] = null;
+        $req['is_active'] = 1;
+
         $user = User::create($req);
-        $user->assignRole($req['roles']);
+        $user->assignRole($roleName);
 
         return redirect()->route(self::$routePath.'.index')
             ->with('success', self::$pageTitle.' created successfully.');
@@ -77,6 +84,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+        $role = Role::where('id', $user->role_id)->pluck('name')->first();
 
         $pageTitle = self::$pageTitle;
         $pageBreadcrumbs = self::$pageBreadcrumbs;
@@ -86,7 +94,7 @@ class UserController extends Controller
         ];
         $routePath = self::$routePath;
 
-        return view(self::$folderPath.'.show', compact('user', 'pageTitle', 'pageBreadcrumbs', 'routePath'));
+        return view(self::$folderPath.'.show', compact('user', 'pageTitle', 'pageBreadcrumbs', 'routePath', 'role'));
     }
 
     public function edit($id)

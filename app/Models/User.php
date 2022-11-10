@@ -31,7 +31,7 @@ class User extends Authenticatable
     static $rules = [
 		'name' => 'required',
 		'username' => 'required',
-		'email' => 'required',
+		'email' => 'required|unique:users',
     ];
 
     static $forgotRules = [

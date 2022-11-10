@@ -13,7 +13,7 @@
                 <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                     <!--begin::Item-->
                     <li class="breadcrumb-item text-muted">
-                        <a href="{{ url('application/dashboard') }}" class="text-muted text-hover-primary">Content Management</a>
+                        <a href="{{ route($routePath.'.index') }}" class="text-muted text-hover-primary">{{ $pageTitle }} Management</a>
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
@@ -87,7 +87,22 @@
                     },
                     {
                         title: 'name',
-                        data: 'name'
+                        data: 'name',
+                        render: function(id, x, t) {
+                            var html = '';
+
+                            if(t.is_logged_in == '2'){
+                                html += `<span class="bg-success rounded-circle border border-4 border-body h-10px w-10px">&nbsp;&nbsp;&nbsp;&nbsp;</span>`;
+                            }else{
+                                html += `<span class="bg-secondary rounded-circle border border-4 border-body h-10px w-10px">&nbsp;&nbsp;&nbsp;&nbsp;</span>`;
+                            }
+
+                            html += `
+                                ${t.name}
+                            `;
+
+                            return html;
+                        }
                     },
                     {
                         title: 'Username',
@@ -128,7 +143,7 @@
                         }
                     },
                 ],
-                order: [[ 0, "DESC" ]]
+                order: [[ 1, "ASC" ]]
             });
 
             // table.on( 'draw.dt', function () {

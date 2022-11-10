@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use Illuminate\Http\Request;
-use DB;
-use Yajra\Datatables\Datatables;
 
 class RoleController extends Controller
 {
@@ -34,8 +35,16 @@ class RoleController extends Controller
 
     public function index(Request $req)
     {
-        if ($req->ajax()) {
-            return Datatables::of(Role::query())->make(true);
+        $data = [];
+        $roles = Role::orderBy('name')->get();
+        $permissions = Permission::get();
+
+        foreach ($roles as $key => $role){
+            $data[] = $role->toArray();
+            $data[$key]['user_count'] = User::where('role_id', $role->id)->count();
+            $data[$key]['permissions'] = $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
+                                                    ->where("role_has_permissions.role_id",$role->id)
+                                                    ->get();
         }
 
         $pageTitle = self::$pageTitle;
@@ -43,7 +52,7 @@ class RoleController extends Controller
         $permissionName = self::$permissionName;
         $routePath = self::$routePath;
 
-        return view('role.index', compact('pageTitle', 'pageBreadcrumbs', 'permissionName', 'routePath'));
+        return view('role.index', compact('pageTitle', 'pageBreadcrumbs', 'permissionName', 'routePath', 'data'));
     }
 
     /**

@@ -13,7 +13,7 @@
                 <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                     <!--begin::Item-->
                     <li class="breadcrumb-item text-muted">
-                        <a href="{{ url('application/contents') }}" class="text-muted text-hover-primary">Content Management</a>
+                        <a href="{{ route($routePath.'.index') }}" class="text-muted text-hover-primary">{{ $pageTitle }} Management</a>
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
@@ -23,7 +23,7 @@
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item text-muted">
-                        <a href="{{ url('application/contents') }}" class="text-muted text-hover-primary">Content</a>
+                        <a href="{{ route($routePath.'.index') }}" class="text-muted text-hover-primary">{{ $pageTitle }}</a>
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
@@ -32,7 +32,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Tambah Data</li>
+                    <li class="breadcrumb-item text-muted">Tambah {{ $pageTitle }}</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -63,29 +63,29 @@
                     <form method="POST" action="{{ route($routePath.'.store') }}" role="form" enctype="multipart/form-data">
                         @csrf
 
-                        <div class="form-group">
-                            {{ Form::label('name') }}
+                        <div class="form-floating mb-5">
                             {{ Form::text('name', null, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Name', 'required']) }}
+                            {{ Form::label('name') }}
                             {!! $errors->first('name', '<div class="invalid-feedback">:message</p>') !!}
                         </div>
-                        <div class="form-group">
-                            {{ Form::label('username') }}
+                        <div class="form-floating mb-5">
                             {{ Form::text('username', null, ['class' => 'form-control' . ($errors->has('username') ? ' is-invalid' : ''), 'placeholder' => 'Username', 'required']) }}
+                            {{ Form::label('username') }}
                             {!! $errors->first('username', '<div class="invalid-feedback">:message</p>') !!}
                         </div>
-                        <div class="form-group">
-                            {{ Form::label('Password') }}
+                        <div class="form-floating mb-5">
                             {{ Form::password('password', ['class' => 'form-control' . ($errors->has('password') ? ' is-invalid' : ''), 'placeholder' => 'Password', 'required' => 'required']) }}
+                            {{ Form::label('Password') }}
                             {!! $errors->first('password', '<div class="invalid-feedback">:message</p>') !!}
                         </div>
-                        <div class="form-group">
-                            {{ Form::label('email') }}
+                        <div class="form-floating mb-5">
                             {{ Form::text('email', null, ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'placeholder' => 'Email', 'required']) }}
+                            {{ Form::label('email') }}
                             {!! $errors->first('email', '<div class="invalid-feedback">:message</p>') !!}
                         </div>
-                        <div class="form-group">
-                            {{ Form::label('role') }}
+                        <div class="form-floating mb-5">
                             {!! Form::select('roles', $roles, null, ['class' => 'form-control', 'required' => 'required']) !!}
+                            {{ Form::label('role') }}
                         </div>
                 
                         <button type="submit" class="btn btn-primary">Submit</button>
