@@ -2,25 +2,25 @@
     <div class="form-floating">
         {{ Form::select('page', $contentPage, $content->page, ['class' => 'form-select mb-5' . ($errors->has('page') ? ' is-invalid' : ''), 'placeholder' => 'Select Page', 'required']) }}
         {{ Form::label('page') }}
-        {!! $errors->first('page', '<div class="invalid-feedback">:message</p>') !!}
+        {!! $errors->first('page', '<p class="invalid-feedback">:message</p>') !!}
     </div>
     
     <div class="form-floating">
         {{ Form::select('content_type', $contentType, $content->content_type, ['class' => 'form-select mb-5' . ($errors->has('content_type') ? ' is-invalid' : ''), 'placeholder' => 'Select Content Type', 'required']) }}
         {{ Form::label('content_type') }}
-        {!! $errors->first('content_type', '<div class="invalid-feedback">:message</p>') !!}
+        {!! $errors->first('content_type', '<p class="invalid-feedback">:message</p>') !!}
     </div>
 
     <div class="form-floating mb-5">
         {{ Form::text('title', $content->title, ['class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''), 'placeholder' => 'Title', 'required']) }}
         {{ Form::label('title') }}
-        {!! $errors->first('title', '<div class="invalid-feedback">:message</p>') !!}
+        {!! $errors->first('title', '<p class="invalid-feedback">:message</p>') !!}
     </div>
 
     <div class="form-floating mb-5">
         {{ Form::textarea('body', $content->body, ['class' => 'form-control' . ($errors->has('body') ? ' is-invalid' : ''), 'placeholder' => 'Body']) }}
         {{ Form::label('body') }}
-        {!! $errors->first('body', '<div class="invalid-feedback">:message</p>') !!}
+        {!! $errors->first('body', '<p class="invalid-feedback">:message</p>') !!}
     </div>
 
 <div class="form-group mb-5">
@@ -29,17 +29,17 @@
     @if(!empty($content->file))
         <a href="{{ '/'.$content->file_dir.'/'.$content->file }}" class="btn btn-primary mt-5" target="_blank">{{ $content->file }}</a>
     @endif
-    {!! $errors->first('file', '<div class="invalid-feedback">:message</p>') !!}
+    {!! $errors->first('file', '<p class="invalid-feedback">:message</p>') !!}
 </div>
 {{-- <div class="form-group">
     {{ Form::label('extra') }}
     {{ Form::text('extra', $content->extra, ['class' => 'form-control' . ($errors->has('extra') ? ' is-invalid' : ''), 'placeholder' => 'Extra', 'required']) }}
-    {!! $errors->first('extra', '<div class="invalid-feedback">:message</p>') !!}
+    {!! $errors->first('extra', '<p class="invalid-feedback">:message</p>') !!}
 </div> --}}
 <div class="form-group" id="gallery-files" style="display: none;">
     {{ Form::label('Files') }}
     {{ Form::file('gallery[]', ['class' => 'form-control mb-3' . ($errors->has('gallery') ? ' is-invalid' : ''), 'multiple']) }}
-    {!! $errors->first('gallery', '<div class="invalid-feedback">:message</p>') !!}
+    {!! $errors->first('gallery', '<p class="invalid-feedback">:message</p>') !!}
     @foreach ($content->contentFiles as $v)
         <div class="btn-group mb-3 mr-3">
             <a href="{{ '/'.$v->file_dir.'/'.$v->file }}" class="btn btn-primary" target="_blank">{{ $v->file }}</a>

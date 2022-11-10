@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/dashboard', 'PagesController@dashboard')->name('dashboard');
 	Route::resource('roles', 'RoleController');
 	Route::resource('users', 'UserController');
+	Route::resource('profiles', 'ProfileController');
 	// contents
 	Route::resource('contents', 'ContentController');
 	Route::get('contents/destroy-content-file/{id}', 'ContentController@destroyContentFile')->name('content.destroy-content-file');

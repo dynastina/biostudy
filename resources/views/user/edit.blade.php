@@ -66,22 +66,22 @@
                         <div class="form-floating mb-5">
                             {{ Form::text('name', $user->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Name', 'required']) }}
                             {{ Form::label('name') }}
-                            {!! $errors->first('name', '<div class="invalid-feedback">:message</p>') !!}
+                            {!! $errors->first('name', '<p class="invalid-feedback">:message</p>') !!}
                         </div>
                         <div class="form-floating mb-5">
                             {{ Form::text('username', $user->username, ['class' => 'form-control' . ($errors->has('username') ? ' is-invalid' : ''), 'placeholder' => 'Username', 'required']) }}
                             {{ Form::label('username') }}
-                            {!! $errors->first('username', '<div class="invalid-feedback">:message</p>') !!}
+                            {!! $errors->first('username', '<p class="invalid-feedback">:message</p>') !!}
                         </div>
                         <div class="form-floating mb-5">
                             {{ Form::password('password', ['class' => 'form-control' . ($errors->has('password') ? ' is-invalid' : ''), 'placeholder' => 'Password']) }}
                             {{ Form::label('Password') }}
-                            {!! $errors->first('password', '<div class="invalid-feedback">:message</p>') !!}
+                            {!! $errors->first('password', '<p class="invalid-feedback">:message</p>') !!}
                         </div>
                         <div class="form-floating mb-5">
                             {{ Form::text('email', $user->email, ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'placeholder' => 'Email', 'required']) }}
                             {{ Form::label('email') }}
-                            {!! $errors->first('email', '<div class="invalid-feedback">:message</p>') !!}
+                            {!! $errors->first('email', '<p class="invalid-feedback">:message</p>') !!}
                         </div>
                         <div class="form-floating mb-5">
                             {!! Form::select('roles', $roles, $userRole, ['class' => 'form-select', 'required' => 'required']) !!}

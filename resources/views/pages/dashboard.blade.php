@@ -57,8 +57,13 @@
                             <!--begin: Pic-->
                             <div class="me-7 mb-4">
                                 <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                                    <img src="{{ asset('metronic/dist') }}/assets/media/avatars/300-1.jpg" alt="image" />
-                                    <div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px"></div>
+                                    @if(!empty(Auth::user()->profile_image))
+                                        <img src="{{ asset(Auth::user()->profile_dir. '/'. Auth::user()->profile_image) }}" alt="{{ Auth::user()->name }} Profil Image" style="object-fit: cover" />
+                                        <div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px"></div>
+                                    @else
+                                        <img src="{{ asset('metronic/dist') }}/assets/media/svg/avatars/blank.svg" alt="{{ Auth::user()->name }} Profil Image" style="object-fit: cover" />
+                                        <div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px"></div>
+                                    @endif
                                 </div>
                             </div>
                             <!--end::Pic-->
@@ -286,7 +291,7 @@
                                 @else
                                     <a href="{{ url('application/users/') . '/' . $usrActive['id'] }}">
                                         <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="{{ $usrActive['name'] }}">
-                                            <img alt="Pic" src="{{ asset('metronic/dist') }}/assets/media/avatars/300-11.jpg" />
+                                            <img alt="$usrActive->name Icon Picture" src="{{ asset($usrActive->profile_dir. '/'. $usrActive->profile_image) }}" />
                                         </div>
                                     </a>
                                 @endif

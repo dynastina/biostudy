@@ -69,7 +69,7 @@
                             <div class="form-group">
                                 {{ Form::label('name') }}
                                 {{ Form::text('name', $role->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Name', 'required' => 'required']) }}
-                                {!! $errors->first('name', '<div class="invalid-feedback">:message</p>') !!}
+                                {!! $errors->first('name', '<p class="invalid-feedback">:message</p>') !!}
                             </div>
 
                             <div class="form-group">

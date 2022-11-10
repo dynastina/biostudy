@@ -267,7 +267,11 @@
                             <div class="app-navbar-item ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
                                 <!--begin::Menu wrapper-->
                                 <div class="cursor-pointer symbol symbol-35px symbol-md-40px" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-                                    <img src="{{ asset('metronic/dist') }}/assets/media/avatars/300-1.jpg" alt="user" />
+									@if(!empty(Auth::user()->profile_image))
+                                        <img src="{{ asset(Auth::user()->profile_dir. '/'. Auth::user()->profile_image) }}" alt="{{ Auth::user()->name }} Profil Image" style="object-fit: cover" />
+                                    @else
+                                        <img src="{{ asset('metronic/dist') }}/assets/media/svg/avatars/blank.svg" alt="{{ Auth::user()->name }} Profil Image" style="object-fit: cover" />
+                                    @endif
                                 </div>
                                 <!--begin::User account menu-->
                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px" data-kt-menu="true">
@@ -276,7 +280,11 @@
                                         <div class="menu-content d-flex align-items-center px-3">
                                             <!--begin::Avatar-->
                                             <div class="symbol symbol-50px me-5">
-                                                <img alt="Logo" src="{{ asset('metronic/dist') }}/assets/media/avatars/300-1.jpg" />
+												@if(!empty(Auth::user()->profile_image))
+													<img src="{{ asset(Auth::user()->profile_dir. '/'. Auth::user()->profile_image) }}" alt="{{ Auth::user()->name }} Profil Image" style="object-fit: cover" />
+												@else
+													<img src="{{ asset('metronic/dist') }}/assets/media/svg/avatars/blank.svg" alt="{{ Auth::user()->name }} Profil Image" style="object-fit: cover" />
+												@endif
                                             </div>
                                             <!--end::Avatar-->
                                             <!--begin::Username-->
@@ -536,7 +544,11 @@
 											<!--end::Info-->
 											<!--begin::User-->
 											<div class="symbol symbol-circle symbol-25px" data-bs-toggle="tooltip" data-bs-boundary="window" data-bs-placement="top" title="Alan Nilson">
-												<img src="{{ asset('metronic/dist') }}/assets/media/avatars/300-1.jpg" alt="img" />
+												@if(!empty(Auth::user()->profile_image))
+													<img src="{{ asset(Auth::user()->profile_dir. '/'. Auth::user()->profile_image) }}" alt="{{ Auth::user()->name }} Profil Image" style="object-fit: cover" />
+												@else
+													<img src="{{ asset('metronic/dist') }}/assets/media/svg/avatars/blank.svg" alt="{{ Auth::user()->name }} Profil Image" style="object-fit: cover" />
+												@endif
 											</div>
 											<!--end::User-->
 										</div>
