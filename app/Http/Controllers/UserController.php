@@ -73,12 +73,13 @@ class UserController extends Controller
         $req['role_id'] = $req['roles'];
         $req['is_logged_in'] = null;
         $req['is_active'] = 1;
+        $req['logged_in_attempt'] = 0;
 
         $user = User::create($req);
         $user->assignRole($roleName);
 
         return redirect()->route(self::$routePath.'.index')
-            ->with('success', self::$pageTitle.' created successfully.');
+            ->with('success', self::$pageTitle.' berhasil di tambahkan.');
     }
 
     public function show($id)
@@ -129,7 +130,7 @@ class UserController extends Controller
         $user->assignRole($req['roles']);
 
         return redirect()->route(self::$routePath.'.index')
-            ->with('success', self::$pageTitle.' updated successfully');
+            ->with('success', self::$pageTitle.' berhasil di update');
     }
 
     public function destroy(Request $req, $id)

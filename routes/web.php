@@ -27,6 +27,10 @@ Route::get('/forgot-password-process', 'PagesController@forgotPasswordProcess')-
 Route::post('/forgot-password-update', 'PagesController@forgotPasswordUpdate')->name('login.forgot-password-update');
 
 Route::get('/email-verification', 'PagesController@emailVerification')->name('login.email-verification');
+Route::get('/email-verification-request', 'PagesController@emailVerificationRequest')->name('login.email-verification-request');
+Route::get('/email-verification-request-resend', 'PagesController@emailVerificationRequestResend')->name('login.email-verification-request-resend');
+Route::get('/email-verification-request-process', 'PagesController@emailVerificationRequestProcess')->name('login.email-verification-request-process');
+Route::get('/email-verification-request-success', 'PagesController@emailVerificationRequestSuccess')->name('login.email-verification-request-success');
 Route::get('/request-account-verification', 'PagesController@accountVerification')->name('login.request-account-verification');
 
 Route::get('/password-verification', 'PagesController@passwordVerification')->name('login.password-verification');
@@ -40,7 +44,10 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/dashboard', 'PagesController@dashboard')->name('dashboard');
 	Route::resource('roles', 'RoleController');
 	Route::resource('users', 'UserController');
+	
+	Route::get('profiles/email-verification/{id}', 'ProfileController@emailVerification')->name('profile.email-verification');
 	Route::resource('profiles', 'ProfileController');
+
 	// contents
 	Route::resource('contents', 'ContentController');
 	Route::get('contents/destroy-content-file/{id}', 'ContentController@destroyContentFile')->name('content.destroy-content-file');

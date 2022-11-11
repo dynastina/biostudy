@@ -119,6 +119,25 @@
                         orderable: false
                     },
                     {
+                        title: 'Status',
+                        data: 'email',
+                        render: function (id, x, t) {
+                            var html = '';
+
+                            if(t.is_active == '1'){
+                                html += `<span class="badge badge-primary">Aktif`;
+                            }else{
+                                html += `<span class="badge badge-danger">Non Aktif`;
+                            }
+
+                            html += `
+                                </span>
+                            `;
+
+                            return html;
+                        }
+                    },
+                    {
                         title: 'Action',
                         class: 'text-center',
                         width: '1%',

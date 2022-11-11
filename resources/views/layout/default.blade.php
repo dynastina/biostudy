@@ -1206,7 +1206,7 @@
             $('body').delay(50).css({
                 'overflow': 'visible'
             });
-        })
+        });
 
     </script>
 

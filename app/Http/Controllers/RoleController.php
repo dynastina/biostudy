@@ -91,7 +91,7 @@ class RoleController extends Controller
         $role->syncPermissions($req['permission']);
 
         return redirect()->route(self::$routePath.'.index')
-            ->with('success', self::$pageTitle.' created successfully.');
+            ->with('success', self::$pageTitle.' berhasil di tambahkan.');
     }
 
     public function show($id)
@@ -153,7 +153,7 @@ class RoleController extends Controller
         $role->syncPermissions($req['permission']);
 
         return redirect()->route('roles.index')
-            ->with('success', 'Role updated successfully');
+            ->with('success', 'Role berhasil di update');
     }
 
     /**

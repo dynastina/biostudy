@@ -201,6 +201,19 @@
                         <!--begin::Input group-->
                         <div class="row mb-6">
                             <!--begin::Label-->
+                            <label class="col-lg-4 col-form-label fw-semibold fs-6">Jenis Kelamin</label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-8 fv-row">
+                                {{ Form::select('gender', ['Laki-laki' => 'Laki-laki', 'Perempuan' => 'Perempuan'], $user->gender, ['class' => 'form-control form-control-lg form-control-solid' . ($errors->has('gender') ? ' is-invalid' : ''), 'placeholder' => 'Masukan Jenis Kelamin']) }}
+                                {!! $errors->first('gender', '<p class="invalid-feedback">:message</p>') !!}
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="row mb-6">
+                            <!--begin::Label-->
                             <label class="col-lg-4 col-form-label fw-semibold fs-6">
                                 <span >Alamat</span>
                             </label>
@@ -237,7 +250,7 @@
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                {{ Form::text('religion', $user->religion, ['class' => 'form-control form-control-lg form-control-solid' . ($errors->has('religion') ? ' is-invalid' : ''), 'placeholder' => 'Masukan Agama Kepercayaan']) }}
+                                {{ Form::select('religion', ['Islam' => 'Islam', 'Katolik' => 'Katolik', 'Protestan' => 'Protestan', 'Hindu' => 'Hindu', 'Budha' => 'Budha', 'Konghucu' => 'Konghucu'], $user->religion, ['class' => 'form-control form-control-lg form-control-solid' . ($errors->has('religion') ? ' is-invalid' : ''), 'placeholder' => 'Masukan Agama Kepercayaan']) }}
                                 {!! $errors->first('religion', '<p class="invalid-feedback">:message</p>') !!}
                             </div>
                             <!--end::Col-->
@@ -250,7 +263,7 @@
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                {{ Form::text('education', $user->education, ['class' => 'form-control form-control-lg form-control-solid' . ($errors->has('education') ? ' is-invalid' : ''), 'placeholder' => 'Masukan Pendidikan Terakhir']) }}
+                                {{ Form::select('education', ['SD Sederajat' => 'SD Sederajat', 'SMP Sederajat' => 'SMP Sederajat', 'SMP Sederajat' => 'SMP Sederajat', 'SMA Sederajat' => 'SMA Sederajat', 'S1' => 'S1', 'S2' => 'S2', 'S3' => 'S3'], $user->education, ['class' => 'form-control form-control-lg form-control-solid' . ($errors->has('education') ? ' is-invalid' : ''), 'placeholder' => 'Masukan Pendidikan Terakhir']) }}
                                 {!! $errors->first('education', '<p class="invalid-feedback">:message</p>') !!}
                             </div>
                             <!--end::Col-->
@@ -259,11 +272,11 @@
                         <!--begin::Input group-->
                         <div class="row mb-6">
                             <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label fw-semibold fs-6">Status Perkawinan</label>
+                            <label class="col-lg-4 col-form-label fw-semibold fs-6">Status Pernikahan</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                {{ Form::text('marital_status', $user->marital_status, ['class' => 'form-control form-control-lg form-control-solid' . ($errors->has('marital_status') ? ' is-invalid' : ''), 'placeholder' => 'Masukan Status Perkawinan']) }}
+                                {{ Form::select('marital_status', ['Belum Menikah' => 'Belum Menikah', 'Menikah' => 'Menikah', 'Cerai Hidup' => 'Cerai Hidup', 'Cerai Mati' => 'Cerai Mati'], $user->marital_status, ['class' => 'form-control form-control-lg form-control-solid' . ($errors->has('marital_status') ? ' is-invalid' : ''), 'placeholder' => 'Masukan Status Pernikahan']) }}
                                 {!! $errors->first('marital_status', '<p class="invalid-feedback">:message</p>') !!}
                             </div>
                             <!--end::Col-->
@@ -276,7 +289,7 @@
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                {{ Form::text('birth_date', $user->birth_date, ['class' => 'form-control form-control-lg form-control-solid' . ($errors->has('birth_date') ? ' is-invalid' : ''), 'placeholder' => 'Masukan Tanggal Lahir']) }}
+                                {{ Form::date('birth_date', $user->birth_date, ['class' => 'form-control form-control-lg form-control-solid flatpickr' . ($errors->has('birth_date') ? ' is-invalid' : ''), 'placeholder' => 'Masukan Tanggal Lahir']) }}
                                 {!! $errors->first('birth_date', '<p class="invalid-feedback">:message</p>') !!}
                             </div>
                             <!--end::Col-->

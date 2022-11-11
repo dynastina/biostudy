@@ -87,6 +87,10 @@
                             {!! Form::select('roles', $roles, $userRole, ['class' => 'form-select', 'required' => 'required']) !!}
                             {{ Form::label('role') }}
                         </div>
+                        <div class="form-floating mb-5">
+                            {!! Form::select('is_active', ['1' => 'Aktif', '0' => 'Non Aktif'], null, ['class' => 'form-control', 'required' => 'required']) !!}
+                            {{ Form::label('is_active', 'Status') }}
+                        </div>
 
                         <button type="submit" class="btn btn-primary">Submit</button>
 

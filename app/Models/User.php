@@ -64,7 +64,8 @@ class User extends Authenticatable
       'role_id',
       'last_logged_in',
       'is_logged_in',
-      'is_active'
+      'is_active',
+      'logged_in_attempt'
 
     ];
     

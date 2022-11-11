@@ -129,7 +129,7 @@
                     <h4 class="mb-1 text-dark">Login Gagal!</h4>
                     <!--end::Title-->
                     <!--begin::Content-->
-                    <span>Pastikan anda telah terdaftar dan tidak salah dalam memasukan username maupun password</span>
+                    <span>Pastikan anda telah terdaftar dan tidak salah dalam memasukan username maupun password. <br> {{ ($message == '1' ? '' : 'Password hint : ' . $message) }}</span>
                     <!--end::Content-->
                 </div>
                 <!--end::Wrapper-->

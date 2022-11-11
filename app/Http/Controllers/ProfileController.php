@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use DB;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Mail\EmailVerification;
 use Yajra\Datatables\Datatables;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class ProfileController extends Controller
 {
@@ -39,6 +41,54 @@ class ProfileController extends Controller
         $user = User::find(Auth::user()->id);
         $role = Role::where('id', $user->role_id)->pluck('name')->first();
 
+        // completion profile
+        $completion = 0;
+
+        if(!empty($user->name)){
+            $completion += 1;
+        }
+        if(!empty($user->email)){
+            $completion += 1;
+        }
+        if(!empty($user->email_verified_at)){
+            $completion += 1;
+        }
+        if(!empty($user->password)){
+            $completion += 1;
+        }
+        if(!empty($user->password_hint)){
+            $completion += 1;
+        }
+        if(!empty($user->position)){
+            $completion += 1;
+        }
+        if(!empty($user->address)){
+            $completion += 1;
+        }
+        if(!empty($user->phone)){
+            $completion += 1;
+        }
+        if(!empty($user->religion)){
+            $completion += 1;
+        }
+        if(!empty($user->gender)){
+            $completion += 1;
+        }
+        if(!empty($user->education)){
+            $completion += 1;
+        }
+        if(!empty($user->marital_status)){
+            $completion += 1;
+        }
+        if(!empty($user->profile_image)){
+            $completion += 1;
+        }
+        if(!empty($user->birth_date)){
+            $completion += 1;
+        }
+
+        $completion = ceil($completion/14 *100);
+
         $pageTitle = self::$pageTitle;
         $pageBreadcrumbs = self::$pageBreadcrumbs;
         $pageBreadcrumbs[] = [
@@ -47,7 +97,7 @@ class ProfileController extends Controller
         ];
         $routePath = self::$routePath;
 
-        return view(self::$folderPath.'.index', compact('user', 'pageTitle', 'pageBreadcrumbs', 'routePath', 'role'));
+        return view(self::$folderPath.'.index', compact('user', 'pageTitle', 'pageBreadcrumbs', 'routePath', 'role', 'completion'));
     }
 
     public function create()
@@ -81,7 +131,7 @@ class ProfileController extends Controller
         $user->assignRole($roleName);
 
         return redirect()->route(self::$routePath.'.index')
-            ->with('success', self::$pageTitle.' created successfully.');
+            ->with('success', self::$pageTitle.' berhasil di tambahkan.');
     }
 
     public function show($id)
@@ -120,26 +170,52 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $req = $request->all();
-        
+
         $user = User::find($req['id']);
+
+        if(User::where('username', $req['username'])->where('id', '!=', $user->id)->count() > 0){
+
+            return redirect()->route(self::$routePath.'.index')
+            ->with('failed', self::$pageTitle.' gagal di update karena username sudah terpakai');
+
+        }
 
         if ($request->file('avatar')) {
             $name = $request->file('avatar')->getClientOriginalName();
             $name = str_replace(' ', '-', $name);
             $fileName = rand().'_'.time().'_'.$name;  
+            
             $request->avatar->move(public_path('uploads/profile'), $fileName);
+
+            try {
+                unlink(public_path($user->profile_dir).'/'.$user->profile_image);
+            } catch (\Throwable $th) {
+                // throw $th;
+            }
 
             $req['profile_image'] = $fileName;
             $req['profile_dir'] = 'uploads/profile';
         }else{
-            $req['profile_image'] = NULL;
-            $req['profile_dir'] = NULL;
+
+            if(!empty($req['avatar_remove'])){
+                if(!empty($user->profile_image)){
+                    
+                    try {
+                        unlink(public_path($user->profile_dir).'/'.$user->profile_image);
+                    } catch (\Throwable $th) {
+                        // throw $th;
+                    }
+    
+                }
+                $req['profile_image'] = NULL;
+                $req['profile_dir'] = NULL;
+            }
         }
 
         $user->update($req);
 
         return redirect()->route(self::$routePath.'.index')
-            ->with('success', self::$pageTitle.' updated successfully');
+            ->with('success', self::$pageTitle.' berhasil di update');
     }
 
     public function destroy(Request $req, $id)
@@ -156,5 +232,33 @@ class ProfileController extends Controller
 
         return redirect()->route(self::$routePath.'.index')
             ->with('success', self::$pageTitle.' deleted successfully');
+    }
+    
+    public function emailVerification($id)
+    {
+
+        if($id != Auth::user()->id){
+
+            return redirect()->route(self::$routePath.'.index')
+            ->with('failed', self::$pageTitle.' gagal verifikasi email. Anda hanya bisa verifikasi akun anda');
+
+        }
+
+        $user = User::find($id)->first();
+
+        $validateEmail = User::where('email', $user->email)->whereNull('email_verified_at')->count();
+
+        if($validateEmail > 0) {
+
+            Mail::to($user->email)->send(new EmailVerification($user));
+    
+            return redirect()->route('login.email-verification-request', ['email' => $user->email]);
+
+        }else{
+            return redirect()->route(self::$routePath.'.index')
+            ->with('failed', self::$pageTitle.' gagal verifikasi email karena anda telah melakukan verifikasi');
+        }
+
+        
     }
 }
