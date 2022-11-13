@@ -49,11 +49,11 @@ php artisan migrate --seed
 ```
 
 ```bash
-php artisan key:generate
+Extract stubs.rar to vendor/ibex/crud-generator/src
 ```
 
 ```bash
-Extract stubs.rar to vendor/ibex/crud-generator/src
+php artisan key:generate
 ```
 
 ```bash
@@ -92,6 +92,23 @@ configure role access
 ```bash
 make routing in web.php
 ```
+
+Now everthing is ready, one little step and everthing will be perfect
+let's assume you will use this template to your new project app and you need to change the head origin, now try this
+
+```bash
+git init .
+```
+
+```bash
+git remote remove origin
+```
+
+```bash
+git remote add origin {new git source}
+```
+
+All done, have fun!
 
 ### Copyright Zamasco Development Team
 

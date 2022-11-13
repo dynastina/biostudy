@@ -26,7 +26,6 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
 
     <style>
-
         @media only screen and (max-width: 400px) {
             .kt_app_content_container {
                 margin-bottom: 100px !important;
@@ -229,7 +228,7 @@
                                         </svg>
                                     </span>
                                     <!--end::Svg Icon-->
-                                    <span class="bullet bullet-dot bg-success h-6px w-6px position-absolute translate-middle top-0 start-50 animation-blink"></span>
+                                    
                                 </div>
                                 <!--end::Menu wrapper-->
                             </div>
@@ -457,240 +456,137 @@
                         <div id="kt_activities_scroll" class="position-relative scroll-y me-n5 pe-5" data-kt-scroll="true" data-kt-scroll-height="auto" data-kt-scroll-wrappers="#kt_activities_body" data-kt-scroll-dependencies="#kt_activities_header, #kt_activities_footer" data-kt-scroll-offset="5px">
                             <!--begin::Timeline items-->
                             <div class="timeline">
-                                {{-- @php
-									$logs = App\Models\ActivityLog::all();
-								@endphp
-								
-								@foreach($logs as $key => $log)
-									<!--begin::Timeline item-->
-									<div class="timeline-item">
-										<!--begin::Timeline line-->
-										<div class="timeline-line w-40px"></div>
-										<!--end::Timeline line-->
-										<!--begin::Timeline icon-->
-										<div class="timeline-icon symbol symbol-circle symbol-40px">
-											<div class="symbol-label bg-light">
-												<!--begin::Svg Icon | path: icons/duotune/communication/com009.svg-->
-												<span class="svg-icon svg-icon-2 svg-icon-gray-500">
-													{!! $log->icon !!}
-												</span>
-												<!--end::Svg Icon-->
-											</div>
-										</div>
-										<!--end::Timeline icon-->
-										<!--begin::Timeline content-->
-										<div class="timeline-content mb-10 mt-n2">
-											<!--begin::Timeline heading-->
-											<div class="overflow-auto pe-3">
-												<!--begin::Title-->
-												<div class="fs-5 fw-semibold mb-2">{{ $log->name }}</div>
-                            <!--end::Title-->
-                            <!--begin::Description-->
-                            <div class="d-flex align-items-center mt-1 fs-6">
-                                <!--begin::Info-->
-                                <div class="text-muted me-2 fs-7">Dibuat pada {{ $log->created_at }} oleh {{ $log->user->name }}</div>
-                                <!--end::Info-->
-                                <!--begin::User-->
-                                <a href="{{ url('application/users/') . '/' . $log->user->id }}">
-                                    <div class="symbol symbol-circle symbol-25px" data-bs-toggle="tooltip" data-bs-boundary="window" data-bs-placement="top" title="{{ $log->user->name }}">
-                                        @if(!empty($log->user->profile_image))
-                                        <img src="{{ asset($log->user->profile_dir. '/'. $log->user->profile_image) }}" alt="{{ $log->user->name }} Profil Image" style="object-fit: cover" loading="lazy" />
-                                        @else
-                                        <img src="{{ asset('metronic/dist') }}/assets/media/svg/avatars/blank.svg" alt="{{ $log->user->name }} Profil Image" style="object-fit: cover" loading="lazy" />
-                                        @endif
-                                    </div>
-                                </a>
-                                <!--end::User-->
                             </div>
-                            <!--end::Description-->
+                            <!--end::Timeline items-->
                         </div>
-                        <!--end::Timeline heading-->
+                        <!--end::Content-->
                     </div>
-                    <!--end::Timeline content-->
+                    <!--end::Body-->
+                    <!--begin::Footer-->
+                    <div class="card-footer py-5 text-center" id="kt_activities_footer">
+                        <a href="{{ url('application/activity-logs') }}" class="btn btn-bg-body text-primary">Liat Semua Aktivitas
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
+                            <span class="svg-icon svg-icon-3 svg-icon-primary">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="currentColor" />
+                                    <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon--></a>
+                    </div>
+                    <!--end::Footer-->
                 </div>
-                <!--end::Timeline item-->
-                @endforeach --}}
             </div>
-            <!--end::Timeline items-->
-        </div>
-        <!--end::Content-->
-    </div>
-    <!--end::Body-->
-    <!--begin::Footer-->
-    <div class="card-footer py-5 text-center" id="kt_activities_footer">
-        <a href="{{ url('application/activity-logs') }}" class="btn btn-bg-body text-primary">Liat Semua Aktivitas
-            <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
-            <span class="svg-icon svg-icon-3 svg-icon-primary">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="currentColor" />
-                    <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="currentColor" />
-                </svg>
-            </span>
-            <!--end::Svg Icon--></a>
-    </div>
-    <!--end::Footer-->
-    </div>
-    </div>
-    <!--end::Activities drawer-->
+            <!--end::Activities drawer-->
 
 
-    <!--begin::Chat drawer-->
-    <div id="kt_drawer_chat" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="chat" data-kt-drawer-activate="true" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'300px', 'md': '500px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_drawer_chat_toggle" data-kt-drawer-close="#kt_drawer_chat_close">
-        <!--begin::Messenger-->
-        <div class="card w-100 rounded-0 border-0" id="kt_drawer_chat_messenger">
-            <!--begin::Card header-->
-            <div class="card-header pe-5" id="kt_drawer_chat_messenger_header">
-                <!--begin::Title-->
-                <div class="card-title">
-                    <!--begin::User-->
-                    <div class="d-flex justify-content-center flex-column me-3">
-                        <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">Pemberitahuan</a>
-                    </div>
-                    <!--end::User-->
-                </div>
-                <!--end::Title-->
-                <!--begin::Card toolbar-->
-                <div class="card-toolbar">
-                    <!--begin::Close-->
-                    <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_chat_close">
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                        <span class="svg-icon svg-icon-2">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
-                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
-                            </svg>
-                        </span>
-                        <!--end::Svg Icon-->
-                    </div>
-                    <!--end::Close-->
-                </div>
-                <!--end::Card toolbar-->
-            </div>
-            <!--end::Card header-->
-            <!--begin::Card body-->
-            <div class="card-body" id="kt_drawer_chat_messenger_body">
-                <!--begin::Messages-->
-                <div class="scroll-y me-n5 pe-5" data-kt-element="messages" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_drawer_chat_messenger_header, #kt_drawer_chat_messenger_footer" data-kt-scroll-wrappers="#kt_drawer_chat_messenger_body" data-kt-scroll-offset="0px">
-                    <!--begin::Message(in)-->
-                    <div class="d-flex justify-content-start mb-10">
-                        <!--begin::Wrapper-->
-                        <div class="d-flex flex-column align-items-start">
+            <!--begin::Chat drawer-->
+            <div id="kt_drawer_chat" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="chat" data-kt-drawer-activate="true" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'300px', 'md': '500px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_drawer_chat_toggle" data-kt-drawer-close="#kt_drawer_chat_close">
+                <!--begin::Messenger-->
+                <div class="card w-100 rounded-0 border-0" id="kt_drawer_chat_messenger">
+                    <!--begin::Card header-->
+                    <div class="card-header pe-5" id="kt_drawer_chat_messenger_header">
+                        <!--begin::Title-->
+                        <div class="card-title">
                             <!--begin::User-->
-                            <div class="d-flex align-items-center mb-2">
-                                <!--begin::Avatar-->
-                                <div class="symbol symbol-35px symbol-circle">
-                                    <img alt="Pic" src="{{ asset('img/triadhipa-icon-mobile.webp') }}" />
-                                </div>
-                                <!--end::Avatar-->
-                                <!--begin::Details-->
-                                <div class="ms-3">
-                                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">System</a>
-                                    <span class="text-muted fs-7 mb-1">{{ date('d F Y H:i', strtotime(Auth::user()->created_at)) }}</span>
-                                </div>
-                                <!--end::Details-->
+                            <div class="d-flex justify-content-center flex-column me-3">
+                                <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">Pemberitahuan</a>
                             </div>
                             <!--end::User-->
-                            <!--begin::Text-->
-                            <div class="p-5 rounded bg-light-info text-dark fw-semibold mw-lg-400px text-start" data-kt-element="message-text">Selamat datang di aplikasi Triadhipa Logistics</div>
-                            <!--end::Text-->
                         </div>
-                        <!--end::Wrapper-->
-                    </div>
-                    <!--end::Message(in)-->
-                    <!--begin::Message(in)-->
-                    <div class="d-flex justify-content-start mb-10">
-                        <!--begin::Wrapper-->
-                        <div class="d-flex flex-column align-items-start">
-                            <!--begin::User-->
-                            <div class="d-flex align-items-center mb-2">
-                                <!--begin::Avatar-->
-                                <div class="symbol symbol-35px symbol-circle">
-                                    <img alt="Pic" src="{{ asset('img/triadhipa-icon-mobile.webp') }}" />
-                                </div>
-                                <!--end::Avatar-->
-                                <!--begin::Details-->
-                                <div class="ms-3">
-                                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">System</a>
-                                    <span class="text-muted fs-7 mb-1">{{ date('d F Y H:i', strtotime(Auth::user()->created_at)) }}</span>
-                                </div>
-                                <!--end::Details-->
+                        <!--end::Title-->
+                        <!--begin::Card toolbar-->
+                        <div class="card-toolbar">
+                            <!--begin::Close-->
+                            <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_chat_close">
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                <span class="svg-icon svg-icon-2">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
                             </div>
-                            <!--end::User-->
-                            <!--begin::Text-->
-                            <div class="p-5 rounded bg-light-info text-dark fw-semibold mw-lg-400px text-start" data-kt-element="message-text">Selamat beraktivitas!</div>
-                            <!--end::Text-->
+                            <!--end::Close-->
                         </div>
-                        <!--end::Wrapper-->
+                        <!--end::Card toolbar-->
                     </div>
-                    <!--end::Message(in)-->
-                </div>
-                <!--end::Messages-->
-            </div>
-            <!--end::Card body-->
-        </div>
-        <!--end::Messenger-->
-    </div>
-    <!--end::Chat drawer-->
-
-    <!--begin::Wrapper-->
-    <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
-        <!--begin::Sidebar-->
-        <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
-            <!--begin::Logo-->
-            <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
-                <!--begin::Logo image-->
-                <a href="{{  url('application/dashboard') }}">
-                    <img alt="Logo Triadhipa Logistics Brand" src="{{ asset('img/triadhipa-logo.webp') }}" class="h-60px app-sidebar-logo-default" />
-                    <img alt="Logo Triadhipa Logistics Brand" src="{{ asset('img/triadhipa-icon.webp') }}" class="h-30px app-sidebar-logo-minimize" />
-                </a>
-                <!--end::Logo image-->
-                <!--begin::Sidebar toggle-->
-                <div id="kt_app_sidebar_toggle" class="app-sidebar-toggle btn btn-icon btn-shadow btn-sm btn-color-muted btn-active-color-primary body-bg h-30px w-30px position-absolute top-50 start-100 translate-middle rotate" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="app-sidebar-minimize">
-                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr079.svg-->
-                    <span class="svg-icon svg-icon-2 rotate-180">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path opacity="0.5" d="M14.2657 11.4343L18.45 7.25C18.8642 6.83579 18.8642 6.16421 18.45 5.75C18.0358 5.33579 17.3642 5.33579 16.95 5.75L11.4071 11.2929C11.0166 11.6834 11.0166 12.3166 11.4071 12.7071L16.95 18.25C17.3642 18.6642 18.0358 18.6642 18.45 18.25C18.8642 17.8358 18.8642 17.1642 18.45 16.75L14.2657 12.5657C13.9533 12.2533 13.9533 11.7467 14.2657 11.4343Z" fill="currentColor" />
-                            <path d="M8.2657 11.4343L12.45 7.25C12.8642 6.83579 12.8642 6.16421 12.45 5.75C12.0358 5.33579 11.3642 5.33579 10.95 5.75L5.40712 11.2929C5.01659 11.6834 5.01659 12.3166 5.40712 12.7071L10.95 18.25C11.3642 18.6642 12.0358 18.6642 12.45 18.25C12.8642 17.8358 12.8642 17.1642 12.45 16.75L8.2657 12.5657C7.95328 12.2533 7.95328 11.7467 8.2657 11.4343Z" fill="currentColor" />
-                        </svg>
-                    </span>
-                    <!--end::Svg Icon-->
-                </div>
-                <!--end::Sidebar toggle-->
-            </div>
-            <!--end::Logo-->
-            <!--begin::sidebar menu-->
-            <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
-                <!--begin::Menu wrapper-->
-                <div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper hover-scroll-overlay-y my-5" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer" data-kt-scroll-wrappers="#kt_app_sidebar_menu" data-kt-scroll-offset="5px" data-kt-scroll-save-state="true">
-                    <!--begin::Menu-->
-                    <div class="menu menu-column menu-rounded menu-sub-indention px-3" id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">
-
-                        <!--begin:Menu item-->
-                        {{ Menu::renderVerMenu(config('menu_aside.items')) }}
-                        <!--end:Menu item-->
-
-
+                    <!--end::Card header-->
+                    <!--begin::Card body-->
+                    <div class="card-body" id="kt_drawer_chat_messenger_body">
+                        <!--begin::Messages-->
+                        <div class="scroll-y me-n5 pe-5 announcement" data-kt-element="messages" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_drawer_chat_messenger_header, #kt_drawer_chat_messenger_footer" data-kt-scroll-wrappers="#kt_drawer_chat_messenger_body" data-kt-scroll-offset="0px">
+                            
+                        
+                        </div>
+                        <!--end::Messages-->
                     </div>
-                    <!--end::Menu-->
+                    <!--end::Card body-->
                 </div>
-                <!--end::Menu wrapper-->
+                <!--end::Messenger-->
             </div>
-            <!--end::sidebar menu-->
-        </div>
-        <!--end::Sidebar-->
-        <!--begin::Main-->
-        <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
-            <!--begin::Content wrapper-->
-            <div class="d-flex flex-column flex-column-fluid">
-                @yield('content')
+            <!--end::Chat drawer-->
+
+            <!--begin::Wrapper-->
+            <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+                <!--begin::Sidebar-->
+                <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
+                    <!--begin::Logo-->
+                    <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
+                        <!--begin::Logo image-->
+                        <a href="{{  url('application/dashboard') }}">
+                            <img alt="Logo Triadhipa Logistics Brand" src="{{ asset('img/triadhipa-logo.webp') }}" class="h-60px app-sidebar-logo-default" />
+                            <img alt="Logo Triadhipa Logistics Brand" src="{{ asset('img/triadhipa-icon.webp') }}" class="h-30px app-sidebar-logo-minimize" />
+                        </a>
+                        <!--end::Logo image-->
+                        <!--begin::Sidebar toggle-->
+                        <div id="kt_app_sidebar_toggle" class="app-sidebar-toggle btn btn-icon btn-shadow btn-sm btn-color-muted btn-active-color-primary body-bg h-30px w-30px position-absolute top-50 start-100 translate-middle rotate" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="app-sidebar-minimize">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr079.svg-->
+                            <span class="svg-icon svg-icon-2 rotate-180">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.5" d="M14.2657 11.4343L18.45 7.25C18.8642 6.83579 18.8642 6.16421 18.45 5.75C18.0358 5.33579 17.3642 5.33579 16.95 5.75L11.4071 11.2929C11.0166 11.6834 11.0166 12.3166 11.4071 12.7071L16.95 18.25C17.3642 18.6642 18.0358 18.6642 18.45 18.25C18.8642 17.8358 18.8642 17.1642 18.45 16.75L14.2657 12.5657C13.9533 12.2533 13.9533 11.7467 14.2657 11.4343Z" fill="currentColor" />
+                                    <path d="M8.2657 11.4343L12.45 7.25C12.8642 6.83579 12.8642 6.16421 12.45 5.75C12.0358 5.33579 11.3642 5.33579 10.95 5.75L5.40712 11.2929C5.01659 11.6834 5.01659 12.3166 5.40712 12.7071L10.95 18.25C11.3642 18.6642 12.0358 18.6642 12.45 18.25C12.8642 17.8358 12.8642 17.1642 12.45 16.75L8.2657 12.5657C7.95328 12.2533 7.95328 11.7467 8.2657 11.4343Z" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </div>
+                        <!--end::Sidebar toggle-->
+                    </div>
+                    <!--end::Logo-->
+                    <!--begin::sidebar menu-->
+                    <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
+                        <!--begin::Menu wrapper-->
+                        <div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper hover-scroll-overlay-y my-5" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer" data-kt-scroll-wrappers="#kt_app_sidebar_menu" data-kt-scroll-offset="5px" data-kt-scroll-save-state="true">
+                            <!--begin::Menu-->
+                            <div class="menu menu-column menu-rounded menu-sub-indention px-3" id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">
+
+                                <!--begin:Menu item-->
+                                {{ Menu::renderVerMenu(config('menu_aside.items')) }}
+                                <!--end:Menu item-->
+
+
+                            </div>
+                            <!--end::Menu-->
+                        </div>
+                        <!--end::Menu wrapper-->
+                    </div>
+                    <!--end::sidebar menu-->
+                </div>
+                <!--end::Sidebar-->
+                <!--begin::Main-->
+                <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+                    <!--begin::Content wrapper-->
+                    <div class="d-flex flex-column flex-column-fluid">
+                        @yield('content')
+                    </div>
+                    <!--end::Content wrapper-->
+                </div>
+                <!--end:::Main-->
             </div>
-            <!--end::Content wrapper-->
+            <!--end::Wrapper-->
         </div>
-        <!--end:::Main-->
-    </div>
-    <!--end::Wrapper-->
-    </div>
-    <!--end::Page-->
+        <!--end::Page-->
     </div>
     <!--end::App-->
     <!--begin::Scrolltop-->
@@ -752,7 +648,25 @@
             $('body').delay(50).css({
                 'overflow': 'visible'
             });
+
+            var id = `{{ Auth::user()->id }}`;
+
+            $.ajax({
+                url: `{{ route('api.announcement-status') }}`,
+                data: {id: id}, 
+                success: function(r) {
+                    
+                    if(r > 0){
+
+                        $('#kt_drawer_chat_toggle').append(`
+                            <span class="bullet bullet-dot bg-success h-6px w-6px position-absolute translate-middle top-0 start-50 animation-blink"></span>
+                        `);
+                    }
+                }
+            });
+
         });
+
 
         $('#kt_activities_toggle').on('click', function() {
 
@@ -823,7 +737,7 @@
 
                     $.map(r, function(n) {
 
-						var newStringDate = n.created_at.substring(0, 10);
+                        var newStringDate = n.created_at.substring(0, 10);
 
                         html += `
 
@@ -889,10 +803,166 @@
                 }
             })
         });
+        
+        $('#kt_drawer_chat_toggle').on('click', function() {
 
-		const nDate = new Date().toLocaleString('en-US', {
-			timezone: '+07:00',
-		});
+            var id = `{{ Auth::user()->id }}`
+            $.ajax({
+                url: `{{ route('api.announcement') }}`,
+                data: {id: id}, 
+                beforeSend: function() {
+                    $('.announcement').html(`
+
+							<main>
+								<ul class="o-vertical-spacing o-vertical-spacing--l">
+									<li class="blog-post o-media">
+										<div class="o-media__figure">
+											<span class="skeleton-box" style="width:75px;height:60px;"></span>
+										</div>
+										<div class="o-media__body">
+											<div class="o-vertical-spacing">
+												<h3 class="blog-post__headline">
+													<span class="skeleton-box" style="width:55%;"></span>
+												</h3>
+												<p>
+													<span class="skeleton-box" style="width:80%;"></span>
+													<span class="skeleton-box" style="width:90%;"></span>
+												</p>
+											</div>
+										</div>
+									</li>
+									<li class="blog-post o-media">
+										<div class="o-media__figure">
+											<span class="skeleton-box" style="width:75px;height:60px;"></span>
+										</div>
+										<div class="o-media__body">
+											<div class="o-vertical-spacing">
+												<h3 class="blog-post__headline">
+													<span class="skeleton-box" style="width:55%;"></span>
+												</h3>
+												<p>
+													<span class="skeleton-box" style="width:80%;"></span>
+													<span class="skeleton-box" style="width:90%;"></span>
+												</p>
+											</div>
+										</div>
+									</li>
+									<li class="blog-post o-media">
+										<div class="o-media__figure">
+											<span class="skeleton-box" style="width:75px;height:60px;"></span>
+										</div>
+										<div class="o-media__body">
+											<div class="o-vertical-spacing">
+												<h3 class="blog-post__headline">
+													<span class="skeleton-box" style="width:55%;"></span>
+												</h3>
+												<p>
+													<span class="skeleton-box" style="width:80%;"></span>
+													<span class="skeleton-box" style="width:90%;"></span>
+												</p>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</main>
+					
+					`);
+                }
+                , success: function(r) {
+
+                    var html = '';
+                    
+                    html = `
+
+                        <!--begin::Message(in)-->
+                        <div class="d-flex justify-content-start mb-10">
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-column align-items-start">
+                                <!--begin::User-->
+                                <div class="d-flex align-items-center mb-2">
+                                    <!--begin::Avatar-->
+                                    <div class="symbol symbol-35px symbol-circle">
+                                        <img alt="Pic" src="{{ asset('img/triadhipa-icon-mobile.webp') }}" />
+                                    </div>
+                                    <!--end::Avatar-->
+                                    <!--begin::Details-->
+                                    <div class="ms-3">
+                                        <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">System</a>
+                                        <span class="text-muted fs-7 mb-1">{{ date('Y-m-d', strtotime(Auth::user()->created_at)) }}</span>
+                                    </div>
+                                    <!--end::Details-->
+                                </div>
+                                <!--end::User-->
+                                <!--begin::Text-->
+                                <div class="p-5 rounded bg-light-info text-dark fw-semibold mw-lg-400px text-start" data-kt-element="message-text">Selamat datang di aplikasi Triadhipa Logistics. Selamat beraktivitas!</div>
+                                <!--end::Text-->
+                            </div>
+                            <!--end::Wrapper-->
+                        </div>
+                        <!--end::Message(in)-->
+                        
+                    `;
+
+                    $('.announcement').html(html);
+
+                    html = '';
+
+                    $.map(r, function(n) {
+                        
+                        var newStringDate = n.created_at.substring(0, 10);
+
+                        html += `
+
+                            <!--begin::Message(in)-->
+                                <div class="d-flex justify-content-start mb-10">
+                                    <!--begin::Wrapper-->
+                                    <div class="d-flex flex-column align-items-start">
+                                        <!--begin::User-->
+                                        <div class="d-flex align-items-center mb-2">
+                                            <!--begin::Avatar-->
+                                            <div class="symbol symbol-35px symbol-circle">
+                                                `;
+                                                
+                                                
+                                                if (n.user.profile_image != null) {
+
+                                                    html += `<img src="{{ asset('') }}${n.user.profile_dir}/${n.user.profile_image}" alt="${n.user.name} Profil Image" style="object-fit: cover" loading="lazy" />`;
+                                                } else {
+
+                                                    html += `<img src="{{ asset('metronic/dist') }}/assets/media/svg/avatars/blank.svg" alt="${n.user.name} Profil Image" style="object-fit: cover" loading="lazy" />`;
+
+                                                }
+                                                
+                                                html += 
+                                                `
+                                            </div>
+                                            <!--end::Avatar-->
+                                            <!--begin::Details-->
+                                            <div class="ms-3">
+                                                <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">${n.user.name}</a>
+                                                <span class="text-muted fs-7 mb-1">${newStringDate}</span>
+                                            </div>
+                                            <!--end::Details-->
+                                        </div>
+                                        <!--end::User-->
+                                        <!--begin::Text-->
+                                        <div class="p-5 rounded bg-light-info text-dark fw-semibold mw-lg-400px text-start" data-kt-element="message-text">${n.name}</div>
+                                        <!--end::Text-->
+                                    </div>
+                                    <!--end::Wrapper-->
+                                </div>
+                            <!--end::Message(in)-->
+
+
+                        `;
+                    });
+
+                    $('.announcement').append(html);
+
+                    $('.animation-blink').remove();
+                }
+            })
+        });
 
     </script>
 

@@ -404,6 +404,15 @@
                 ajax: `{{ url('application/users') }}/${id}`,
                 columns: [
                     {
+                        title: 'No',
+                        class: 'text-center',
+                        width: '1%',
+                        data: 'id',
+                        render: function (id, x, t) {
+                            return t.idx;
+                        }
+                    },
+                    {
                         title: 'name',
                         data: 'name'
                     }

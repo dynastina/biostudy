@@ -69,12 +69,12 @@
                                 <td>{{ $announcement->name }}</td>
                             </tr>
                             <tr>
-                                <td width="20%">Created By</td>
-                                <td>{{ $announcement->created_by }}</td>
+                                <td width="20%">Dibuat oleh</td>
+                                <td>{{ $announcement->user->name }}</td>
                             </tr>
                             <tr>
                                 <td width="20%">Updated By</td>
-                                <td>{{ $announcement->updated_by }}</td>
+                                <td>{{ $announcement->userUpdate->name }} pada {{ $announcement->updated_at }}</td>
                             </tr>
 
                         </table>

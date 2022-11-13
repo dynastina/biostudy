@@ -32,14 +32,19 @@ class Announcement extends Model
 
 
 
-  public function user()
-  {
-      return $this->belongsTo('App\Models\User', 'created_by', 'id');
-  }
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'created_by', 'id');
+    }
   
-  public function userUpdate()
-  {
-      return $this->belongsTo('App\Models\User', 'updated_by', 'id');
-  }
+    public function userUpdate()
+    {
+        return $this->belongsTo('App\Models\User', 'updated_by', 'id');
+    }
+
+    public function announcementStatus()
+    {
+        return $this->hasMany('App\Models\AnnouncementStatus', 'id', 'announcement_id');
+    }
 
 }

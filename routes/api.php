@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/log-activity', [ApiController::class, 'logActivity'])->name('api.log-activity');
+Route::get('/announcement', [ApiController::class, 'announcement'])->name('api.announcement');
+Route::get('/announcementStatus', [ApiController::class, 'announcementStatus'])->name('api.announcement-status');
