@@ -169,7 +169,7 @@
                         , error: function(e) {
                             Swal.fire({
                                 icon: 'error'
-                                , title: 'An error occurred.'
+                                , title: 'Terjadi kesalahan'
                             });
                         }
                     , });
