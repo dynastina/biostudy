@@ -21,7 +21,7 @@ var KTAppContactView = function () {
                 icon: "warning",
                 buttonsStyling: false,
                 showCancelButton: true,
-                confirmButtonText: "Yes, delete it!",
+                confirmButtonText: "Lanjutkan!",
                 cancelButtonText: "No, return",
                 customClass: {
                     confirmButton: "btn btn-danger",

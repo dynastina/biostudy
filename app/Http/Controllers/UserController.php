@@ -141,11 +141,11 @@ class UserController extends Controller
             return response()->json([
                 'success' => true,
                 'code' => 200,
-                'message' => self::$pageTitle.' deleted successfully'
+                'message' => self::$pageTitle.' berhasil di hapus'
             ], 200);
         }
 
         return redirect()->route(self::$routePath.'.index')
-            ->with('success', self::$pageTitle.' deleted successfully');
+            ->with('success', self::$pageTitle.' berhasil di hapus');
     }
 }

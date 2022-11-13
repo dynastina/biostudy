@@ -133,12 +133,16 @@
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a  class="menu-link flex-stack px-3">Ganti Password</a>
+                                                    <a href="{{ url('application/profiles') . '/' . Auth::user()->id . '/' . 'edit'}}" class="menu-link flex-stack px-3">Ganti Password</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a  class="menu-link px-3">Non Aktifkan Akun <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Akun anda tidak akan terdata"></i></a>
+                                                    <form action="{{ url('application/profiles') }}/deactivated/{{ Auth::user()->id }}" method="POST" class="d-flex">
+                                                        @csrf
+                                                        <button type="submit" class="menu-link text-danger px-5 btn-delete" style="background-color: transparent;border: none;">Non Aktifkan Akun</button>
+                                                    </form>
+                                                    {{-- <a  class="menu-link px-3">Non Aktifkan Akun <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Akun anda tidak akan terdata"></i></a> --}}
                                                 </div>
                                                 <!--end::Menu item-->
                                             </div>
@@ -314,4 +318,47 @@
     </div>
 </div>
 <!--end::Content-->
+@endsection
+
+@section('scripts')
+    <script>
+        $('body').on('click', '.btn-delete', function(event) {
+            event.preventDefault();
+
+            var form = $(this).closest('form');
+
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Tindakan ini tidak bisa diurungkan.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Lanjutkan!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: form.attr('method'),
+                        url: form.attr('action'),
+                        data: form.serialize(),
+                        success: function (r) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: r.message
+                            });
+
+                            document.location.href = `{{ route('logout') }}`
+                            
+                        },
+                        error: function (e) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'An error occurred.'
+                            });
+                        },
+                    });
+                }
+            })
+        });
+    </script>
 @endsection

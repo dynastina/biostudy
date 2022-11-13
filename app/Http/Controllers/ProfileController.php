@@ -170,9 +170,15 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $req = $request->all();
-
+        
         $user = User::find($req['id']);
 
+        if(empty($req['password'])){
+            $req['password'] = $user->password;
+        }else{
+            $req['password'] = Hash::make($req['password']);
+        }
+        
         if(User::where('username', $req['username'])->where('id', '!=', $user->id)->count() > 0){
 
             return redirect()->route(self::$routePath.'.index')
@@ -226,12 +232,12 @@ class ProfileController extends Controller
             return response()->json([
                 'success' => true,
                 'code' => 200,
-                'message' => self::$pageTitle.' deleted successfully'
+                'message' => self::$pageTitle.' berhasil di hapus'
             ], 200);
         }
 
         return redirect()->route(self::$routePath.'.index')
-            ->with('success', self::$pageTitle.' deleted successfully');
+            ->with('success', self::$pageTitle.' berhasil di hapus');
     }
     
     public function emailVerification($id)
@@ -260,5 +266,25 @@ class ProfileController extends Controller
         }
 
         
+    }
+
+    public function deactivated(Request $request, $id){
+
+        $req = $request->all();
+
+        User::find($id)->update([
+            'is_active' => 0
+        ]);
+        
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'code' => 200,
+                'message' => ' User berhasil di nonaktifkan'
+            ], 200);
+        }
+
+        
+
     }
 }

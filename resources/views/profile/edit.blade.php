@@ -66,7 +66,7 @@
             <!--begin::Content-->
             <div id="kt_account_settings_profile_details" class="collapse show">
                 <!--begin::Form-->
-                    
+
                 <form id="kt_account_profile_details_form" class="form" action="{{ route($routePath.'.update', $user->id) }}" role="form" enctype="multipart/form-data" method="POST">
                     {{ method_field('PATCH') }}
                     @csrf
@@ -83,9 +83,9 @@
                                 <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('{{ asset('metronic/dist') }}/assets/media/svg/avatars/blank.svg')">
                                     <!--begin::Preview existing avatar-->
                                     @if(!empty($user->profile_image))
-                                        <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ asset($user->profile_dir. '/'. $user->profile_image) }})"></div>
+                                    <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ asset($user->profile_dir. '/'. $user->profile_image) }})"></div>
                                     @else
-                                        <div class="image-input-wrapper w-125px h-125px" style="background-image: url('{{ asset('metronic/dist') }}/assets/media/svg/avatars/blank.svg')"></div>
+                                    <div class="image-input-wrapper w-125px h-125px" style="background-image: url('{{ asset('metronic/dist') }}/assets/media/svg/avatars/blank.svg')"></div>
                                     @endif
                                     <!--end::Preview existing avatar-->
                                     <!--begin::Label-->
@@ -173,7 +173,39 @@
                         <div class="row mb-6">
                             <!--begin::Label-->
                             <label class="col-lg-4 col-form-label fw-semibold fs-6">
-                                <span >Email</span>
+                                <span>Password</span>
+                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Isi password jika ingin mengganti password anda"></i>
+                            </label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-8 fv-row">
+                                {{ Form::text('password', '', ['class' => 'form-control form-control-lg form-control-solid' . ($errors->has('password') ? ' is-invalid' : ''), 'placeholder' => 'Masukan password']) }}
+                                {!! $errors->first('password', '<p class="invalid-feedback">:message</p>') !!}
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="row mb-6">
+                            <!--begin::Label-->
+                            <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                <span>Password Hint</span>
+                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Jika anda 2x salah memasukan password ada saat login, maka password hint akan muncul"></i>
+                            </label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-8 fv-row">
+                                {{ Form::text('password_hint', $user->password_hint, ['class' => 'form-control form-control-lg form-control-solid' . ($errors->has('password_hint') ? ' is-invalid' : ''), 'placeholder' => 'Masukan password_hint']) }}
+                                {!! $errors->first('password_hint', '<p class="invalid-feedback">:message</p>') !!}
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="row mb-6">
+                            <!--begin::Label-->
+                            <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                <span>Email</span>
                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Email harus aktif"></i>
                             </label>
                             <!--end::Label-->
@@ -215,7 +247,7 @@
                         <div class="row mb-6">
                             <!--begin::Label-->
                             <label class="col-lg-4 col-form-label fw-semibold fs-6">
-                                <span >Alamat</span>
+                                <span>Alamat</span>
                             </label>
                             <!--end::Label-->
                             <!--begin::Col-->
@@ -232,7 +264,7 @@
                         <div class="row mb-6">
                             <!--begin::Label-->
                             <label class="col-lg-4 col-form-label fw-semibold fs-6">Telp
-                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Telp harus aktif"></i>
+                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Telp harus aktif"></i>
                             </label>
                             <!--end::Label-->
                             <!--begin::Col-->

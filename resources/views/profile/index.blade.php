@@ -227,12 +227,15 @@
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                                <a href="" class="menu-link px-5">Ganti Password</a>
+                                <a href="{{ route($routePath.'.index') . '/' . $user->id . '/' . 'edit'}}" class="menu-link px-5">Ganti Password</a>
                             </div>
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                                <a href="#" class="menu-link text-danger px-5">Non Aktifkan Akun</a>
+                                <form action="{{ route($routePath.'.index') }}/deactivated/{{ $user->id }}" method="POST" class="d-flex">
+                                    @csrf
+                                    <button type="submit" class="menu-link text-danger px-5 btn-delete" style="background-color: transparent;border: none;">Non Aktifkan Akun</button>
+                                </form>
                             </div>
                             <!--end::Menu item-->
                         </div>
@@ -495,37 +498,49 @@
             <!--end::Content-->
         </div>
         <!--end::Layout-->
-        {{-- <div class="card">
-                <div class="card-header py-5">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span id="card_title">
-                            <h4 class="m-0">{{ __('View '.$pageTitle) }}</h4>
-        </span>
-    </div>
 </div>
-<div class="card-body">
-    <table class="table table-bordered table-hover w-100">
+</div>
+@endsection
 
-        <tr>
-            <td width="20%">Name</td>
-            <td>{{ $user->name }}</td>
-        </tr>
-        <tr>
-            <td width="20%">Username</td>
-            <td>{{ $user->username }}</td>
-        </tr>
-        <tr>
-            <td width="20%">Email</td>
-            <td>{{ $user->email }}</td>
-        </tr>
-        <tr>
-            <td width="20%">Role</td>
-            <td>{{ $user->roles[0]->name }}</td>
-        </tr>
+@section('scripts')
+    <script>
+        $('body').on('click', '.btn-delete', function(event) {
+            event.preventDefault();
 
-    </table>
-</div>
-</div> --}}
-</div>
-</div>
+            var form = $(this).closest('form');
+
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Tindakan ini tidak bisa diurungkan.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Lanjutkan!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: form.attr('method'),
+                        url: form.attr('action'),
+                        data: form.serialize(),
+                        success: function (r) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: r.message
+                            });
+
+                            document.location.href = `{{ route('logout') }}`
+                            
+                        },
+                        error: function (e) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'An error occurred.'
+                            });
+                        },
+                    });
+                }
+            })
+        });
+    </script>
 @endsection

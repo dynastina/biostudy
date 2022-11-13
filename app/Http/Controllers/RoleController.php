@@ -169,11 +169,11 @@ class RoleController extends Controller
             return response()->json([
                 'success' => true,
                 'code' => 200,
-                'message' => self::$pageTitle.' deleted successfully'
+                'message' => self::$pageTitle.' berhasil di hapus'
             ], 200);
         }
 
         return redirect()->route('roles.index')
-            ->with('success', 'Role deleted successfully');
+            ->with('success', 'Role berhasil di hapus');
     }
 }

@@ -88,7 +88,7 @@
                             {{ Form::label('role') }}
                         </div>
                         <div class="form-floating mb-5">
-                            {!! Form::select('is_active', ['1' => 'Aktif', '0' => 'Non Aktif'], null, ['class' => 'form-control', 'required' => 'required']) !!}
+                            {!! Form::select('is_active', ['1' => 'Aktif', '0' => 'Non Aktif'], $user->is_active, ['class' => 'form-control', 'required' => 'required']) !!}
                             {{ Form::label('is_active', 'Status') }}
                         </div>
 

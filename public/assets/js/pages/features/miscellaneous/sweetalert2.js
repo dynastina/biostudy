@@ -89,11 +89,11 @@ var KTSweetAlert2Demo = function () {
 
 		$('#kt_sweetalert_demo_8').click(function (e) {
 			Swal.fire({
-				title: 'Are you sure?',
-				text: "You won't be able to revert this!",
+				title: 'Apakah anda yakin?',
+				text: "Tindakan ini tidak bisa diurungkan.",
 				icon: 'warning',
 				showCancelButton: true,
-				confirmButtonText: 'Yes, delete it!'
+				confirmButtonText: 'Lanjutkan!'
 			}).then(function (result) {
 				if (result.value) {
 					Swal.fire(
@@ -107,11 +107,11 @@ var KTSweetAlert2Demo = function () {
 
 		$('#kt_sweetalert_demo_9').click(function (e) {
 			Swal.fire({
-				title: 'Are you sure?',
-				text: "You won't be able to revert this!",
+				title: 'Apakah anda yakin?',
+				text: "Tindakan ini tidak bisa diurungkan.",
 				icon: 'warning',
 				showCancelButton: true,
-				confirmButtonText: 'Yes, delete it!',
+				confirmButtonText: 'Lanjutkan!',
 				cancelButtonText: 'No, cancel!',
 				reverseButtons: true
 			}).then(function (result) {

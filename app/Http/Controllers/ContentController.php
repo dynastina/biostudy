@@ -176,12 +176,12 @@ class ContentController extends Controller
             return response()->json([
                 'success' => true,
                 'code' => 200,
-                'message' => self::$pageTitle.' deleted successfully'
+                'message' => self::$pageTitle.' berhasil di hapus'
             ], 200);
         }
 
         return redirect()->route(self::$routePath.'.index')
-            ->with('success', self::$pageTitle.' deleted successfully');
+            ->with('success', self::$pageTitle.' berhasil di hapus');
     }
 
     public function destroyContentFile(Request $req, $id)
@@ -192,11 +192,11 @@ class ContentController extends Controller
             return response()->json([
                 'success' => true,
                 'code' => 200,
-                'message' => 'File deleted successfully'
+                'message' => 'File berhasil di hapus'
             ], 200);
         }
 
         return redirect()->route(self::$routePath.'.index')
-            ->with('success', 'File deleted successfully');
+            ->with('success', 'File berhasil di hapus');
     }
 }

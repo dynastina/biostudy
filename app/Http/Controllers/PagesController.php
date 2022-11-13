@@ -49,9 +49,25 @@ class PagesController extends Controller
 
     public function login(Request $request)
     {
+
+        $req = $request->all();
+
+        $user = User::where('username', $req['username'])->first();
+
+        if(!empty($user)){
+
+            if($user->is_active == 0){
+    
+                return redirect()->route('login')->with('non-active', true);
+    
+            }
+        }
+
         if (Auth::attempt($request->only('username', 'password'))) {
 
             $user = Auth::user();
+
+            // dd($user->is_active);
 
             if(empty($user['is_logged_in'])){
                 
@@ -87,7 +103,6 @@ class PagesController extends Controller
             $request->session()->regenerate();
             return redirect()->route('dashboard');
         } else {
-            $req = $request->all();
 
             $data = User::where('username', $req['username']);
             

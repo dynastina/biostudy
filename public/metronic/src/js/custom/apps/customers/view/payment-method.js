@@ -23,7 +23,7 @@ var KTCustomerViewPaymentMethod = function () {
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: false,
-                    confirmButtonText: "Yes, delete it!",
+                    confirmButtonText: "Lanjutkan!",
                     cancelButtonText: "No, return",
                     customClass: {
                         confirmButton: "btn btn-primary",

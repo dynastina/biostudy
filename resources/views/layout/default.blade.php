@@ -302,7 +302,7 @@
                                     <!--end::Menu separator-->
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-5">
-                                        <a href="../../demo1/dist/account/overview.html" class="menu-link px-5">Profile Saya</a>
+                                        <a href="{{ url('application/profiles') . '/' . Auth::user()->id . '/' . 'edit'}}" class="menu-link px-5">Profile Saya</a>
                                     </div>
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->

@@ -46,6 +46,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::resource('users', 'UserController');
 	
 	Route::get('profiles/email-verification/{id}', 'ProfileController@emailVerification')->name('profile.email-verification');
+	Route::post('profiles/deactivated/{id}', 'ProfileController@deactivated')->name('profile.deactivated');
 	Route::resource('profiles', 'ProfileController');
 
 	// contents
