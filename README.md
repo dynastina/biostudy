@@ -78,8 +78,8 @@ Please take a note, in every single table you create. Please include these.
 
 1. created_at as datetime
 2. updated_at as datetime
-3. created_by as datetime
-4. updated_by as datetime
+3. created_by as int
+4. updated_by as int
 
 ```bash
 configure menu_aside.php
