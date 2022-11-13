@@ -2,7 +2,20 @@
 
 ### Introduction
 
-...
+This project is a base functional for any projects. Build with combination of laravel and metronic template
+You can see the raw project of templates in bitbucket > Asset/Template Backend HTML
+
+If you need front end in your project try this
+
+```bash
+open routes folder
+```
+
+```bash
+edit front.php and uncomment // Route::get('/', 'PagesController@index');
+```
+
+You can use raw projects templates for front end in bitbucket > Asset/Template Frontend
 
 ### Installation
 
@@ -24,15 +37,15 @@ cp .env.example .env
 ```
 
 ```bash
+php artisan migrate --seed
+```
+
+```bash
 php artisan key:generate
 ```
 
 ```bash
-npm install
-```
-
-```bash
-npm run dev
+Extract stubs.rar to vendor/ibex/crud-generator/src
 ```
 
 ```bash
@@ -40,14 +53,13 @@ php artisan serve
 ```
 
 ```bash
-Extract stubs-for-crud-generator.rar
+Navigate to generated server link (http://127.0.0.1:8000)
 ```
 
-And navigate to generated server link (http://127.0.0.1:8000)
 
-### Copyright
+### Copyright Zamasco Development Team
 
-...
+last updated by ganden
 
 ----------------------------------------------------------------------
 Permission https://github.com/spatie/laravel-permission
