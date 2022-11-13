@@ -41,6 +41,10 @@ cp .env.example .env
 ```
 
 ```bash
+configure your app_name and your database
+```
+
+```bash
 php artisan migrate --seed
 ```
 
@@ -60,6 +64,33 @@ php artisan serve
 Navigate to generated server link (http://127.0.0.1:8000)
 ```
 
+If you want to make new module automatically, you can try this one
+
+```bash
+make table in your database
+```
+
+```bash
+php artisan make:crud {table_name}
+```
+
+Please take a note, in every single table you create. Please include these:
+1. created_at
+2. updated_at
+3. created_by
+4. updated_by
+
+```bash
+configure aside_menu.php
+```
+
+```bash
+configure role access 
+```
+
+```bash
+make routing in web.php
+```
 
 ### Copyright Zamasco Development Team
 

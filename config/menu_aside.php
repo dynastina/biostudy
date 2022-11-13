@@ -16,17 +16,27 @@ return [
             'new-tab' => false,
         ],
         [
-            'section' => 'Content Management',
+            'section' => 'Information',
             'menus' => ['content-list']
         ],
         'content-list' => [
-            'title' => 'Content',
+            'title' => 'Konten',
             'root' => true,
             'icon' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M20 7H3C2.4 7 2 6.6 2 6V3C2 2.4 2.4 2 3 2H20C20.6 2 21 2.4 21 3V6C21 6.6 20.6 7 20 7ZM7 9H3C2.4 9 2 9.4 2 10V20C2 20.6 2.4 21 3 21H7C7.6 21 8 20.6 8 20V10C8 9.4 7.6 9 7 9Z" fill="currentColor"></path>
                             <path opacity="0.3" d="M20 21H11C10.4 21 10 20.6 10 20V10C10 9.4 10.4 9 11 9H20C20.6 9 21 9.4 21 10V20C21 20.6 20.6 21 20 21Z" fill="currentColor"></path>
                         </svg>', // svg or linked image (svg can be taken from fontawesome or template-back-end)
             'page' => 'contents',
+            'new-tab' => false,
+        ],
+        'announcement-list' => [
+            'title' => 'Pemberitahuan',
+            'root' => true,
+            'icon' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.3" d="M21 19H3C2.4 19 2 18.6 2 18V6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6V18C22 18.6 21.6 19 21 19Z" fill="currentColor"></path>
+                            <path d="M21 5H2.99999C2.69999 5 2.49999 5.10005 2.29999 5.30005L11.2 13.3C11.7 13.7 12.4 13.7 12.8 13.3L21.7 5.30005C21.5 5.10005 21.3 5 21 5Z" fill="currentColor"></path>
+                        </svg>', // svg or linked image (svg can be taken from fontawesome or template-back-end)
+            'page' => 'announcements',
             'new-tab' => false,
         ],
         [

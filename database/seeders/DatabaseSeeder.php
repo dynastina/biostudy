@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
         //     'updated_at' => '2021-06-25 05:47:42'
         // ]);
 
-        $path = public_path('../database/seeders/sql/z_app_v3_seed.sql');
+        $path = public_path('../database/seeders/sql/z_app_v4_seed.sql');
         $sql = file_get_contents($path);
         DB::unprepared($sql);
     }
