@@ -26,6 +26,13 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
 
     <style>
+
+        @media only screen and (max-width: 400px) {
+            .kt_app_content_container {
+                margin-bottom: 100px !important;
+            }
+        }
+
         .skeleton-box {
             display: inline-block;
             height: 1em;

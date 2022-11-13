@@ -43,6 +43,12 @@
                 text-align: center !important;
             }
         }
+        
+		@media only screen and (max-width: 400px) {
+            .mobile-responsive {
+                margin-bottom: 120px !important;
+            }
+        }
 
 		#preloader {
 			position: fixed;
@@ -116,7 +122,7 @@
 				</div>
 				<!--begin::Aside-->
 				<!--begin::Body-->
-				<div class="d-flex flex-center w-lg-50 p-10">
+				<div class="d-flex flex-center w-lg-50 mobile-responsive">
 					
                     {{-- content --}}
                     @yield('content')
