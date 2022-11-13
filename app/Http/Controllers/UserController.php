@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Spatie\Permission\Models\Role;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use DB;
+use App\Models\User;
+use App\Models\ActivityLog;
+use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -82,20 +84,73 @@ class UserController extends Controller
             ->with('success', self::$pageTitle.' berhasil di tambahkan.');
     }
 
-    public function show($id)
+    public function show($id, Request $req)
     {
+        
         $user = User::find($id);
         $role = Role::where('id', $user->role_id)->pluck('name')->first();
+        
+        if ($req->ajax()) {
+            return Datatables::of(ActivityLog::where('created_by', $user->id)->get())->addIndexColumn()->make(true);
+        }
+
+        // completion profile
+        $completion = 0;
+
+        if(!empty($user->name)){
+            $completion += 1;
+        }
+        if(!empty($user->email)){
+            $completion += 1;
+        }
+        if(!empty($user->email_verified_at)){
+            $completion += 1;
+        }
+        if(!empty($user->password)){
+            $completion += 1;
+        }
+        if(!empty($user->password_hint)){
+            $completion += 1;
+        }
+        if(!empty($user->position)){
+            $completion += 1;
+        }
+        if(!empty($user->address)){
+            $completion += 1;
+        }
+        if(!empty($user->phone)){
+            $completion += 1;
+        }
+        if(!empty($user->religion)){
+            $completion += 1;
+        }
+        if(!empty($user->gender)){
+            $completion += 1;
+        }
+        if(!empty($user->education)){
+            $completion += 1;
+        }
+        if(!empty($user->marital_status)){
+            $completion += 1;
+        }
+        if(!empty($user->profile_image)){
+            $completion += 1;
+        }
+        if(!empty($user->birth_date)){
+            $completion += 1;
+        }
+
+        $completion = ceil($completion/14 *100);
 
         $pageTitle = self::$pageTitle;
         $pageBreadcrumbs = self::$pageBreadcrumbs;
         $pageBreadcrumbs[] = [
-            'page' => '/application/'.self::$routePath.'/'.$id,
+            'page' => '/application/'.self::$routePath.'/'.$user->id,
             'title' => 'Show '.self::$pageTitle,
         ];
         $routePath = self::$routePath;
 
-        return view(self::$folderPath.'.show', compact('user', 'pageTitle', 'pageBreadcrumbs', 'routePath', 'role'));
+        return view(self::$folderPath.'.show', compact('user', 'pageTitle', 'pageBreadcrumbs', 'routePath', 'role', 'completion', 'id'));
     }
 
     public function edit($id)

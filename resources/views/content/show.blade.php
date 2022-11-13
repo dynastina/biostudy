@@ -72,15 +72,19 @@
                                     </tr>
                                     <tr>
                                         <td width="20%">Title</td>
-                                        <td>{{ $content->title }}</td>
+                                        <td>{!! $content->title !!}</td>
                                     </tr>
                                     <tr>
                                         <td width="20%">Body</td>
-                                        <td>{{ $content->body }}</td>
+                                        <td>{!! $content->body !!}</td>
                                     </tr>
                                     <tr>
                                         <td width="20%">File</td>
-                                        <td><a href="{{ '/'.$content->file_dir.'/'.$content->file }}" class="btn btn-primary" target="_blank">{{ $content->file }}</a></td>
+                                        @if(!empty($content->file_dir))
+                                            <td><a href="{{ '/'.$content->file_dir.'/'.$content->file }}" class="btn btn-primary" target="_blank">{{ $content->file }}</a></td>
+                                        @else
+                                            <td>-</td>
+                                        @endif
                                     </tr>
                                     @if($content->content_type == 'files')
                                         <tr>
@@ -95,10 +99,14 @@
                                             </td>
                                         </tr>
                                     @endif
-                                    {{-- <tr>
-                                        <td width="20%">Extra</td>
-                                        <td>{{ $content->extra }}</td>
-                                    </tr> --}}
+                                    <tr>
+                                        <td width="20%">Dibuat Oleh</td>
+                                        <td>{{ $content->user->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">Diupdate Oleh</td>
+                                        <td>{{ $content->userUpdate->name }} pada {{ $content->updated_at }}</td>
+                                    </tr>
 
                     </table>
                 </div>

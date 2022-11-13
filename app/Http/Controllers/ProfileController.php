@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Models\User;
+use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use App\Mail\EmailVerification;
 use Yajra\Datatables\Datatables;
@@ -36,8 +37,13 @@ class ProfileController extends Controller
         ];
     }
 
-    public function index()
+    public function index(Request $req)
     {
+
+        if ($req->ajax()) {
+            return Datatables::of(ActivityLog::where('created_by', Auth::user()->id)->get())->addIndexColumn()->make(true);
+        }
+
         $user = User::find(Auth::user()->id);
         $role = Role::where('id', $user->role_id)->pluck('name')->first();
 

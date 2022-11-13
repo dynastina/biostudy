@@ -15,6 +15,10 @@ open routes folder
 edit front.php and uncomment // Route::get('/', 'PagesController@index');
 ```
 
+```bash
+go to app/Http/FrontEnd/PagesController to build frontend
+```
+
 You can use raw projects templates for front end in bitbucket > Asset/Template Frontend
 
 ### Installation

@@ -410,80 +410,7 @@
                             <div class="card-body pt-0 pb-5">
                                 <!--begin::Table wrapper-->
                                 <div class="table-responsive">
-                                    <!--begin::Table-->
-                                    <table class="table align-middle table-row-dashed gy-5" id="kt_table_users_login_session">
-                                        <!--begin::Table head-->
-                                        <thead class="border-bottom border-gray-200 fs-7 fw-bold">
-                                            <!--begin::Table row-->
-                                            <tr class="text-start text-muted text-uppercase gs-0">
-                                                <th class="min-w-100px">Location</th>
-                                                <th>Device</th>
-                                                <th>IP Address</th>
-                                                <th class="min-w-125px">Time</th>
-                                                <th class="min-w-70px">Actions</th>
-                                            </tr>
-                                            <!--end::Table row-->
-                                        </thead>
-                                        <!--end::Table head-->
-                                        <!--begin::Table body-->
-                                        <tbody class="fs-6 fw-semibold text-gray-600">
-                                            <tr>
-                                                <!--begin::Invoice=-->
-                                                <td>Australia</td>
-                                                <!--end::Invoice=-->
-                                                <!--begin::Status=-->
-                                                <td>Chome - Windows</td>
-                                                <!--end::Status=-->
-                                                <!--begin::Amount=-->
-                                                <td>207.20.20.271</td>
-                                                <!--end::Amount=-->
-                                                <!--begin::Date=-->
-                                                <td>23 seconds ago</td>
-                                                <!--end::Date=-->
-                                                <!--begin::Action=-->
-                                                <td>Current session</td>
-                                                <!--end::Action=-->
-                                            </tr>
-                                            <tr>
-                                                <!--begin::Invoice=-->
-                                                <td>Australia</td>
-                                                <!--end::Invoice=-->
-                                                <!--begin::Status=-->
-                                                <td>Safari - iOS</td>
-                                                <!--end::Status=-->
-                                                <!--begin::Amount=-->
-                                                <td>207.19.33.311</td>
-                                                <!--end::Amount=-->
-                                                <!--begin::Date=-->
-                                                <td>3 days ago</td>
-                                                <!--end::Date=-->
-                                                <!--begin::Action=-->
-                                                <td>
-                                                    <a href="#" data-kt-users-sign-out="single_user">Sign out</a>
-                                                </td>
-                                                <!--end::Action=-->
-                                            </tr>
-                                            <tr>
-                                                <!--begin::Invoice=-->
-                                                <td>Australia</td>
-                                                <!--end::Invoice=-->
-                                                <!--begin::Status=-->
-                                                <td>Chrome - Windows</td>
-                                                <!--end::Status=-->
-                                                <!--begin::Amount=-->
-                                                <td>207.12.22.267</td>
-                                                <!--end::Amount=-->
-                                                <!--begin::Date=-->
-                                                <td>last week</td>
-                                                <!--end::Date=-->
-                                                <!--begin::Action=-->
-                                                <td>Expired</td>
-                                                <!--end::Action=-->
-                                            </tr>
-                                        </tbody>
-                                        <!--end::Table body-->
-                                    </table>
-                                    <!--end::Table-->
+                                    <table id="DataTable" class="table table-striped table-bordered table-hover w-100"></table>
                                 </div>
                                 <!--end::Table wrapper-->
                             </div>
@@ -504,6 +431,58 @@
 
 @section('scripts')
     <script>
+        $(document).ready(function(){
+            var table = $('#DataTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route($routePath.'.index') }}",
+                columns: [
+                    {
+                        title: 'name',
+                        data: 'name'
+                    }
+                ],
+                order: [[ 0, "DESC" ]]
+            });
+
+            $('body').on('click', '.btn-delete', function(event) {
+                event.preventDefault();
+
+                var form = $(this).closest('form');
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: form.attr('method'),
+                            url: form.attr('action'),
+                            data: form.serialize(),
+                            success: function (r) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: r.message
+                                });
+                                
+                                table.ajax.reload();
+                            },
+                            error: function (e) {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'An error occurred.'
+                                });
+                            },
+                        });
+                    }
+                })
+            });
+        });
         $('body').on('click', '.btn-delete', function(event) {
             event.preventDefault();
 

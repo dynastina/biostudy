@@ -12,10 +12,20 @@ class Content extends Model
     'title' => 'required',
   ];
 
-  protected $fillable = ['page', 'content_type', 'title', 'body', 'file', 'file_dir', 'extra'];
+  protected $fillable = ['page', 'content_type', 'title', 'body', 'file', 'file_dir', 'extra', 'created_by', 'updated_by'];
 
   public function contentFiles()
   {
     return $this->hasMany('App\Models\ContentFile', 'content_id', 'id');
+  }
+
+  public function user()
+  {
+      return $this->belongsTo('App\Models\User', 'created_by', 'id');
+  }
+  
+  public function userUpdate()
+  {
+      return $this->belongsTo('App\Models\User', 'updated_by', 'id');
   }
 }
