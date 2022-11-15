@@ -187,6 +187,8 @@ class AnnouncementController extends Controller
             'created_by' => Auth::user()->id
         ]);
 
+        AnnouncementStatus::where('announcement_id', $announcement['id'])->delete();
+
         $announcement->delete();
 
         if ($req->ajax()) {
