@@ -12,14 +12,17 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public $contentPage = [
-        'home' => 'Home',
-        'about' => 'About'
+        'faq' => 'FAQ',
+        'team' => 'Team',
+        'company' => 'Company',
     ];
 
     public $contentType = [
         'title' => 'Title',
         'description' => 'Description',
         'info' => 'Info',
+        'about' => 'About',
+        'vision' => 'Vision',
         'files' => 'Files'
     ];
 }

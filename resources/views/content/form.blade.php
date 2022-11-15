@@ -12,9 +12,27 @@
     </div>
 
     <div class="form-floating mb-5">
-        {{ Form::text('title', $content->title, ['class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''), 'placeholder' => 'Title', 'required']) }}
+        {{ Form::text('title', $content->title, ['class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''), 'placeholder' => 'Title']) }}
         {{ Form::label('title') }}
         {!! $errors->first('title', '<p class="invalid-feedback">:message</p>') !!}
+    </div>
+    
+    <div class="form-floating mb-5">
+        {{ Form::text('subtitle', $content->subtitle, ['class' => 'form-control' . ($errors->has('subtitle') ? ' is-invalid' : ''), 'placeholder' => 'Subtitle']) }}
+        {{ Form::label('subtitle') }}
+        {!! $errors->first('subtitle', '<p class="invalid-feedback">:message</p>') !!}
+    </div>
+    
+    <div class="form-floating mb-5">
+        {{ Form::text('url', $content->url, ['class' => 'form-control' . ($errors->has('url') ? ' is-invalid' : ''), 'placeholder' => 'URL']) }}
+        {{ Form::label('url') }}
+        {!! $errors->first('url', '<p class="invalid-feedback">:message</p>') !!}
+    </div>
+
+    <div class="form-floating mb-5">
+        {{ Form::text('extra', $content->extra, ['class' => 'form-control' . ($errors->has('extra') ? ' is-invalid' : ''), 'placeholder' => 'Extra']) }}
+        {{ Form::label('extra') }}
+        {!! $errors->first('extra', '<p class="invalid-feedback">:message</p>') !!}
     </div>
 
     <div class="form-floating mb-5">
@@ -33,7 +51,7 @@
 </div>
 {{-- <div class="form-group">
     {{ Form::label('extra') }}
-    {{ Form::text('extra', $content->extra, ['class' => 'form-control' . ($errors->has('extra') ? ' is-invalid' : ''), 'placeholder' => 'Extra', 'required']) }}
+    {{ Form::text('extra', $content->extra, ['class' => 'form-control' . ($errors->has('extra') ? ' is-invalid' : ''), 'placeholder' => 'Extra']) }}
     {!! $errors->first('extra', '<p class="invalid-feedback">:message</p>') !!}
 </div> --}}
 <div class="form-group" id="gallery-files" style="display: none;">

@@ -37,7 +37,7 @@ class ActivityLogController extends Controller
     public function index(Request $req)
     {
         if ($req->ajax()) {
-            return Datatables::of(ActivityLog::query())->addIndexColumn()->make(true);
+            return Datatables::of(ActivityLog::with('user')->get())->addIndexColumn()->make(true);
         }
 
         $pageTitle = self::$pageTitle;

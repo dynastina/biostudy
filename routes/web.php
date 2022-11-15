@@ -46,6 +46,10 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::resource('users', 'UserController');
 	Route::resource('activity-logs', 'ActivityLogController');
 	Route::resource('announcements', 'AnnouncementController');
+
+	Route::get('about/faq', 'AboutController@faq')->name('about.faq');
+	Route::get('about/team', 'AboutController@team')->name('about.team');
+	Route::get('about/company', 'AboutController@company')->name('about.company');
 	
 	Route::get('profiles/email-verification/{id}', 'ProfileController@emailVerification')->name('profile.email-verification');
 	Route::post('profiles/deactivated/{id}', 'ProfileController@deactivated')->name('profile.deactivated');

@@ -343,6 +343,22 @@
                             <div class="card-header border-0">
                                 <!--begin::Card title-->
                                 <div class="card-title flex-column">
+                                    <h2 class="mb-1">Bergabung Sejak</h2>
+                                    <div class="fs-6 fw-semibold text-muted">Tanggal akun ini dibuat dan beroperasi</div>
+                                </div>
+                            </div>
+                            <!--begin::Card body-->
+                            <div class="card-body pb-5">
+                                <p>{{ $user->created_at ?? '-'}}</p>
+                            </div>
+                            <!--end::Card body-->
+                        </div>
+                        <!--end::Card-->
+                        <!--begin::Card-->
+                        <div class="card pt-4 mb-6 mb-xl-9">
+                            <div class="card-header border-0">
+                                <!--begin::Card title-->
+                                <div class="card-title flex-column">
                                     <h2 class="mb-1">Terakhir Login</h2>
                                     <div class="fs-6 fw-semibold text-muted">Terakhir login ke aplikasi Triadhipa Logistics</div>
                                 </div>

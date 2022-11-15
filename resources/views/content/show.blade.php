@@ -72,11 +72,15 @@
                                     </tr>
                                     <tr>
                                         <td width="20%">Title</td>
-                                        <td>{!! $content->title !!}</td>
+                                        <td>{!! $content->title ?? '-' !!}</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">Subtitle</td>
+                                        <td>{!! $content->subtitle ?? '-' !!}</td>
                                     </tr>
                                     <tr>
                                         <td width="20%">Body</td>
-                                        <td>{!! $content->body !!}</td>
+                                        <td>{!! $content->body ?? '-' !!}</td>
                                     </tr>
                                     <tr>
                                         <td width="20%">File</td>
@@ -86,6 +90,17 @@
                                             <td>-</td>
                                         @endif
                                     </tr>
+                                    @if(!empty($content->url))
+                                        <tr>
+                                            <td width="20%">URL</td>
+                                            <td>
+                                                <div class="btn-group mb-3 mr-3">
+                                                    <a href="//{{ $content->url }}" class="btn btn-primary" target="_blank">{{ $content->url }}</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endif
+
                                     @if($content->content_type == 'files')
                                         <tr>
                                             <td width="20%">Files</td>
@@ -99,6 +114,10 @@
                                             </td>
                                         </tr>
                                     @endif
+                                    <tr>
+                                        <td width="20%">Extra</td>
+                                        <td>{!! $content->extra ?? '-' !!}</td>
+                                    </tr>
                                     <tr>
                                         <td width="20%">Dibuat Oleh</td>
                                         <td>{{ $content->user->name }}</td>

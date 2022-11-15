@@ -92,8 +92,14 @@
                         }
                     },
                     {
-                        title: 'name',
+                        title: 'Keterangan',
                         data: 'name'
+                    },
+                    {
+                        title: 'Dibuat oleh',
+                        render: function (id, x, t) {
+                            return t.user.name;
+                        }
                     },
                     {
                         title: 'Action',

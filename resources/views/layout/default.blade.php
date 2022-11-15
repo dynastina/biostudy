@@ -391,17 +391,17 @@
                                         <div class="menu-sub menu-sub-dropdown w-175px py-4">
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="../../demo1/dist/account/referrals.html" class="menu-link px-5">FAQ</a>
+                                                <a href="{{ url('application/about/faq') }}" class="menu-link px-5">FAQ</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="../../demo1/dist/account/billing.html" class="menu-link px-5">Team Kami</a>
+                                                <a href="{{ url('application/about/team') }}" class="menu-link px-5">Team Kami</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="../../demo1/dist/account/statements.html" class="menu-link px-5">Tentang Perusahaan</a>
+                                                <a href="{{ url('application/about/company') }}" class="menu-link px-5">Tentang Perusahaan</a>
                                             </div>
                                             <!--end::Menu item-->
                                         </div>
