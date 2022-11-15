@@ -8,6 +8,7 @@ use App\Models\Announcement;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Models\AnnouncementStatus;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
  */
 class AnnouncementController extends Controller
 {
-    public static $pageTitle = 'Announcement';
+    public static $pageTitle = 'Pemberitahuan';
     // public static $pageDescription = 'Announcement Description';
     // public static $modelName = 'App\Models\Announcement';
     public static $permissionName = 'announcement';
@@ -63,8 +64,15 @@ class AnnouncementController extends Controller
             'title' => 'Create '.self::$pageTitle,
         ];
         $routePath = self::$routePath;
+
+        $target = ['' => 'Semua'];
+        $roles = Role::pluck('id', 'name')->toArray();
+
+        foreach ($roles as $key => $role) {
+            $target[$role] = $key;
+        }
         
-        return view(self::$folderPath.'.create', compact('announcement', 'pageTitle', 'pageBreadcrumbs', 'routePath'));
+        return view(self::$folderPath.'.create', compact('announcement', 'pageTitle', 'pageBreadcrumbs', 'routePath', 'target'));
     }
 
     public function store(Request $request)
@@ -73,7 +81,11 @@ class AnnouncementController extends Controller
         $req['created_by'] = Auth::user()->id;
         $req['updated_by'] = Auth::user()->id;
 
-        $users = User::where('is_active', 1)->orderBy('last_logged_in', 'desc')->get();
+        if(empty($req['target'])){
+            $users = User::where('is_active', 1)->orderBy('last_logged_in', 'desc')->get();
+        }else{
+            $users = User::where('is_active', 1)->where('role_id', $req['target'])->orderBy('last_logged_in', 'desc')->get();
+        }
 
         // logs
         ActivityLog::create([
@@ -129,7 +141,14 @@ class AnnouncementController extends Controller
         ];
         $routePath = self::$routePath;
 
-        return view(self::$folderPath.'.edit', compact('announcement', 'pageTitle', 'pageBreadcrumbs', 'routePath'));
+        $target = ['' => 'Semua'];
+        $roles = Role::pluck('id', 'name')->toArray();
+
+        foreach ($roles as $key => $role) {
+            $target[$role] = $key;
+        }
+
+        return view(self::$folderPath.'.edit', compact('announcement', 'pageTitle', 'pageBreadcrumbs', 'routePath', 'target'));
     }
 
     public function update(Request $request, $id)
