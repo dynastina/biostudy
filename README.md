@@ -5,22 +5,6 @@
 This project is a base functional for any projects. Build with combination of laravel and metronic template
 You can see the raw project of templates in bitbucket > Asset/Template Backend HTML
 
-If you need front end in your project try this
-
-```bash
-open routes folder
-```
-
-```bash
-edit front.php and uncomment // Route::get('/', 'PagesController@index');
-```
-
-```bash
-go to app/Http/FrontEnd/PagesController to build frontend
-```
-
-You can use raw projects templates for front end in bitbucket > Asset/Template Frontend
-
 ### Installation
 
 Laravel has a set of requirements in order to ron smoothly in specific environment. Please see [requirements](https://laravel.com/docs/7.x#server-requirements) section in Laravel documentation.
@@ -49,7 +33,7 @@ php artisan migrate --seed
 ```
 
 ```bash
-Extract stubs.rar to vendor/ibex/crud-generator/src
+Extract stubs.rar and replace to vendor/ibex/crud-generator/src
 ```
 
 ```bash
@@ -107,6 +91,24 @@ git remote remove origin
 ```bash
 git remote add origin {new git source}
 ```
+
+### Frontend
+
+If you need front end in your project try this
+
+```bash
+open routes folder
+```
+
+```bash
+edit front.php and uncomment // Route::get('/', 'PagesController@index');
+```
+
+```bash
+go to app/Http/FrontEnd/PagesController to build frontend
+```
+
+You can use raw projects templates for front end in bitbucket > Asset/Template Frontend
 
 All done, have fun!
 
