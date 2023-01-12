@@ -54,57 +54,14 @@ class Menu
         } elseif (isset($item['title'])) {
             $item_class = '';
             $item_attr = '';
-
-            if (isset($item['submenu'])) {
-                $item_class .= ' menu-item-submenu'; // m-menu__item--active
-
-                if (isset($item['toggle']) && $item['toggle'] == 'click') {
-                    $item_attr .= ' data-menu-toggle="click"';
-                } else {
-                    $item_attr .= ' data-menu-toggle="hover"';
-                }
-
-                if (isset($item['mode'])) {
-                    $item_attr .= ' data-menu-mode="' . $item['mode'] . '"';
-                }
-
-                if (isset($item['dropdown-toggle-class'])) {
-                    $item_attr .= ' data-menu-toggle-class="' . $item['dropdown-toggle-class'] . '"';
-                }
-
-                $menuCount = 0;
-                foreach ($item['submenu'] as $key => $submenu_item) {
-                    if (!is_int($key)) {
-                        if (!\auth()->user()->can($key)) {
-                            continue;
-                        }
-                    }
-                    $menuCount++;
-                }
-
-                if ($menuCount == 0) {
-                    $item_class .= ' d-none';
-                }
-            }
-
+            
             if (isset($item['redirect']) && $item['redirect'] === true) {
                 $item_attr .= ' data-menu-redirect="1"';
-            }
-
-            // parent item for hoverable submenu
-            if (isset($item['parent'])) {
-                $item_class .= ' menu-item-parent'; // m-menu__item--active
             }
 
             // custom class for menu item
             if (isset($item['custom-class'])) {
                 $item_class .= ' ' . $item['custom-class'];
-            }
-
-            if (isset($item['submenu']) && self::isActiveVerMenuItem($item, request()->path())) {
-                $item_class .= ' menu-item-open menu-item-here'; // m-menu__item--active
-            } elseif (self::isActiveVerMenuItem($item, request()->path())) {
-                $item_class .= ' menu-item-active';
             }
 
             // echo '<li class="menu-item ' . $item_class . '" aria-haspopup="true" ' . $item_attr . '>';
@@ -122,7 +79,6 @@ class Menu
                     $target = 'target="_blank"';
                 }
 
-                // echo '<a ' . $target . ' href="' . $url . '" class="menu-link ' . (isset($item['submenu']) ? 'menu-toggle' : '') . '">';
             }
 
             // Menu arrow
@@ -141,27 +97,83 @@ class Menu
 
             // dd(Route::current()->getName());
 
-            echo '
-                <div class="menu-item">
-                    <!--begin:Menu link-->
-                    <a class="menu-link '. (str_contains(Route::current()->getName(), $item['page']) ? 'active' : '') .'" href="'. $url .'">
-                        <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->
-                            <span class="svg-icon svg-icon-2"> ';
-                                
-            
-            echo $item['icon'];
+            if(isset($item['submenu'])){
+                echo '
+                
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <!--begin:Menu link-->
+                        <span class="menu-link">
+                            <span class="menu-icon">
+                                <!--begin::Svg Icon | path: icons/duotune/text/txt002.svg-->
+                                <span class="svg-icon svg-icon-2">
+                                    ';
+                                    
+                                    echo $item['icon'];
 
-            // Badge
-                            echo '
+                                echo   '
+                                </span>
+                                <!--end::Svg Icon-->
                             </span>
-                            <!--end::Svg Icon-->
+                            <span class="menu-title">' . $item['title'] . '</span>
+                            <span class="menu-arrow"></span>
                         </span>
-                        <span class="menu-title">' . $item['title'] . '</span>
-                    </a>
-                    <!--end:Menu link-->
+                        <!--end:Menu link-->
+                        <!--begin:Menu sub-->
+                        <div class="menu-sub menu-sub-accordion">
+                            ';
+                            
+                                foreach ($item['submenu'] as $submenu) {
+
+                                    $url = url("application/" . $submenu['page']);
+
+                                    echo '
+
+                                    <!--begin:Menu item-->
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link '. (str_contains((Route::current()->getName() ?? ''), ($submenu['page'] ?? '')) ? 'active' : '') .'" href="'. $url .'">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">' . $submenu['title'] . '</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
+                                    <!--end:Menu item-->
+                                    
+                                    
+                                    ';
+
+                                }
+
+                          echo  '
+                        </div>
+                        <!--end:Menu sub-->
                 </div>
                 ';
+            }else{
+                echo '
+                    <div class="menu-item">
+                        <!--begin:Menu link-->
+                        <a class="menu-link '. (str_contains((Route::current()->getName() ?? ''), ($item['page'] ?? '')) ? 'active' : '') .'" href="'. $url .'">
+                            <span class="menu-icon">
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->
+                                <span class="svg-icon svg-icon-2"> ';
+                                    
+                
+                echo $item['icon'];
+    
+                // Badge
+                                echo '
+                                </span>
+                                <!--end::Svg Icon-->
+                            </span>
+                            <span class="menu-title">' . $item['title'] . '</span>
+                        </a>
+                        <!--end:Menu link-->
+                    </div>
+                    ';
+            }
             // echo '<span class="menu-text">' . $item['title'] . '</span>';
             if (isset($item['label'])) {
                 echo '<span class="menu-badge"><span class="label ' . $item['label']['type'] . '">' . $item['label']['value'] . '</span></span>';
@@ -178,64 +190,11 @@ class Menu
                 return;
             }
 
-            if (isset($item['submenu'])) {
-                if (isset($item['root']) == false && config('layout.menu.aside.submenu.arrow') == 'plus-minus') {
-                    echo '<i class="menu-arrow menu-arrow-pm"><span><span></span></span></i>';
-                } elseif (isset($item['root']) == false && config('layout.menu.aside.submenu.arrow') == 'plus-minus-square') {
-                    echo '<i class="menu-arrow menu-arrow-pm-square"><span><span></span></span></i>';
-                } elseif (isset($item['root']) == false && config('layout.menu.aside.submenu.arrow') == 'plus-minus-circle') {
-                    echo '<i class="menu-arrow menu-arrow-pm-circle"><span><span></span></span></i>';
-                } else {
-                    if (isset($item['arrow']) && $item['arrow'] !== false && config('layout.aside.menu.root-arrow') !== false) {
-                        echo '<i class="menu-arrow"></i>';
-                    }
-                }
-            }
 
             if (isset($item['parent'])) {
                 echo '</span>';
             } else {
                 echo '</a>';
-            }
-
-            if (isset($item['submenu'])) {
-                $submenu_dir = '';
-                if (isset($item['submenu-up']) && $item['submenu-up'] === true) {
-                    $submenu_dir = 'menu-submenu-up';
-                }
-                echo '<div class="menu-submenu ' . $submenu_dir . '">';
-                echo '<span class="menu-arrow"></span>';
-
-                if (isset($item['custom-class']) && ($item['custom-class'] === 'menu-item-submenu-stretch' || $item['custom-class'] === 'menu-item-submenu-scroll')) {
-                    echo '<div class="menu-wrapper">';
-                }
-
-                if (isset($item['scroll'])) {
-                    echo '<div class="menu-scroll" data-scroll="true" style="height: ' . $item['scroll'] . '">';
-                }
-
-                echo '<ul class="menu-subnav">';
-                if (isset($item['root'])) {
-                    $parent_item = $item;
-                    $parent_item['parent'] = true;
-                    unset($parent_item['icon']);
-                    unset($parent_item['submenu']);
-                    self::renderVerMenu($parent_item, null, $rec++, true); // single item render
-                }
-                foreach ($item['submenu'] as $key => $submenu_item) {
-                    if (!is_int($key)) {
-                        if (!\auth()->user()->can($key)) {
-                            continue;
-                        }
-                    }
-                    self::renderVerMenu($submenu_item, $item, $rec++);
-                }
-                echo '</ul>';
-
-                if (isset($item['scroll']) || isset($item['custom-class']) && $item['custom-class'] === 'menu-item-submenu-stretch') {
-                    echo '</div>';
-                }
-                echo '</div>';
             }
 
             // echo '</li>';
