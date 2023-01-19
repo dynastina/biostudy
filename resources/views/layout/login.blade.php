@@ -18,8 +18,8 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
 		<!--end::Fonts-->
 		<!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-		<link href="{{ asset('metronic/dist') }}/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('metronic/dist') }}/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('demo1/dist') }}/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('demo1/dist') }}/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
 
         <style>
@@ -103,7 +103,7 @@
 		<!--begin::Root-->
 		<div class="d-flex flex-column flex-root" id="kt_app_root">
 			<!--begin::Page bg image-->
-			<style>body { background-image: url('{{ asset('metronic/dist') }}/assets/media/auth/bg4.jpg'); } [data-theme="dark"] body { background-image: url('{{ asset('metronic/dist') }}/assets/media/auth/bg4-dark.jpg'); }</style>
+			<style>body { background-image: url('{{ asset('demo1/dist') }}/assets/media/auth/bg4.jpg'); } [data-theme="dark"] body { background-image: url('{{ asset('demo1/dist') }}/assets/media/auth/bg4-dark.jpg'); }</style>
 			<!--end::Page bg image-->
 			<!--begin::Authentication - Sign-in -->
 			<div class="d-flex flex-column flex-column-fluid flex-lg-row">
@@ -135,7 +135,7 @@
 		<!--end::Root-->
 
 		<!--begin::Custom Javascript(used for this page only)-->
-		<script src="{{ asset('metronic/dist') }}/assets/js/custom/authentication/sign-in/general.js"></script>
+		<script src="{{ asset('demo1/dist') }}/assets/js/custom/authentication/sign-in/general.js"></script>
 
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
@@ -158,8 +158,8 @@
 		<!--begin::Javascript-->
 		<script>var hostUrl = "assets/";</script>
 		<!--begin::Global Javascript Bundle(mandatory for all pages)-->
-		<script src="{{ asset('metronic/dist') }}/assets/plugins/global/plugins.bundle.js"></script>
-		<script src="{{ asset('metronic/dist') }}/assets/js/scripts.bundle.js"></script>
+		<script src="{{ asset('demo1/dist') }}/assets/plugins/global/plugins.bundle.js"></script>
+		<script src="{{ asset('demo1/dist') }}/assets/js/scripts.bundle.js"></script>
 		<!--end::Global Javascript Bundle-->
 
 		<script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>

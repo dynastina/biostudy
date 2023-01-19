@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
     <!--end::Fonts-->
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-    <link href="{{ asset('metronic/dist') }}/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('metronic/dist') }}/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('demo1/dist') }}/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('demo1/dist') }}/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
 
     {{-- datatables --}}
@@ -336,7 +336,7 @@
                                     @if(!empty(Auth::user()->profile_image))
                                     <img src="{{ asset(Auth::user()->profile_dir. '/'. Auth::user()->profile_image) }}" alt="{{ Auth::user()->name }} Profil Image" style="object-fit: cover" />
                                     @else
-                                    <img src="{{ asset('metronic/dist') }}/assets/media/svg/avatars/blank.svg" alt="{{ Auth::user()->name }} Profil Image" style="object-fit: cover" />
+                                    <img src="{{ asset('demo1/dist') }}/assets/media/svg/avatars/blank.svg" alt="{{ Auth::user()->name }} Profil Image" style="object-fit: cover" />
                                     @endif
                                 </div>
                                 <!--begin::User account menu-->
@@ -349,7 +349,7 @@
                                                 @if(!empty(Auth::user()->profile_image))
                                                 <img src="{{ asset(Auth::user()->profile_dir. '/'. Auth::user()->profile_image) }}" alt="{{ Auth::user()->name }} Profil Image" style="object-fit: cover" loading="lazy" />
                                                 @else
-                                                <img src="{{ asset('metronic/dist') }}/assets/media/svg/avatars/blank.svg" alt="{{ Auth::user()->name }} Profil Image" style="object-fit: cover" loading="lazy" />
+                                                <img src="{{ asset('demo1/dist') }}/assets/media/svg/avatars/blank.svg" alt="{{ Auth::user()->name }} Profil Image" style="object-fit: cover" loading="lazy" />
                                                 @endif
                                             </div>
                                             <!--end::Avatar-->
@@ -609,12 +609,12 @@
 
     </script>
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="{{ asset('metronic/dist') }}/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="{{ asset('metronic/dist') }}/assets/js/scripts.bundle.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="{{ asset('metronic/dist') }}/assets/plugins/custom/datatables/datatables.bundle.js"></script>
-    <script src="{{ asset('metronic/dist') }}/assets/plugins/custom/vis-timeline/vis-timeline.bundle.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/plugins/custom/vis-timeline/vis-timeline.bundle.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
@@ -622,21 +622,21 @@
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="{{ asset('metronic/dist') }}/assets/js/widgets.bundle.js"></script>
-    <script src="{{ asset('metronic/dist') }}/assets/js/custom/widgets.js"></script>
-    <script src="{{ asset('metronic/dist') }}/assets/js/custom/apps/chat/chat.js"></script>
-    <script src="{{ asset('metronic/dist') }}/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-    <script src="{{ asset('metronic/dist') }}/assets/js/custom/utilities/modals/create-project/type.js"></script>
-    <script src="{{ asset('metronic/dist') }}/assets/js/custom/utilities/modals/create-project/budget.js"></script>
-    <script src="{{ asset('metronic/dist') }}/assets/js/custom/utilities/modals/create-project/settings.js"></script>
-    <script src="{{ asset('metronic/dist') }}/assets/js/custom/utilities/modals/create-project/team.js"></script>
-    <script src="{{ asset('metronic/dist') }}/assets/js/custom/utilities/modals/create-project/targets.js"></script>
-    <script src="{{ asset('metronic/dist') }}/assets/js/custom/utilities/modals/create-project/files.js"></script>
-    <script src="{{ asset('metronic/dist') }}/assets/js/custom/utilities/modals/create-project/complete.js"></script>
-    <script src="{{ asset('metronic/dist') }}/assets/js/custom/utilities/modals/create-project/main.js"></script>
-    <script src="{{ asset('metronic/dist') }}/assets/js/custom/utilities/modals/create-app.js"></script>
-    <script src="{{ asset('metronic/dist') }}/assets/js/custom/utilities/modals/new-address.js"></script>
-    <script src="{{ asset('metronic/dist') }}/assets/js/custom/utilities/modals/users-search.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/js/widgets.bundle.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/js/custom/widgets.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/js/custom/apps/chat/chat.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/js/custom/utilities/modals/create-project/type.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/js/custom/utilities/modals/create-project/budget.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/js/custom/utilities/modals/create-project/settings.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/js/custom/utilities/modals/create-project/team.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/js/custom/utilities/modals/create-project/targets.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/js/custom/utilities/modals/create-project/files.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/js/custom/utilities/modals/create-project/complete.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/js/custom/utilities/modals/create-project/main.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/js/custom/utilities/modals/create-app.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/js/custom/utilities/modals/new-address.js"></script>
+    <script src="{{ asset('demo1/dist') }}/assets/js/custom/utilities/modals/users-search.js"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
 
@@ -779,7 +779,7 @@
                             html += `<img src="{{ asset('') }}${n.user.profile_dir}/${n.user.profile_image}" alt="${n.user.name} Profil Image" style="object-fit: cover" loading="lazy" />`;
                         } else {
 
-                            html += `<img src="{{ asset('metronic/dist') }}/assets/media/svg/avatars/blank.svg" alt="${n.user.name} Profil Image" style="object-fit: cover" loading="lazy" />`;
+                            html += `<img src="{{ asset('demo1/dist') }}/assets/media/svg/avatars/blank.svg" alt="${n.user.name} Profil Image" style="object-fit: cover" loading="lazy" />`;
 
                         }
 
@@ -929,7 +929,7 @@
                                                     html += `<img src="{{ asset('') }}${n.user.profile_dir}/${n.user.profile_image}" alt="${n.user.name} Profil Image" style="object-fit: cover" loading="lazy" />`;
                                                 } else {
 
-                                                    html += `<img src="{{ asset('metronic/dist') }}/assets/media/svg/avatars/blank.svg" alt="${n.user.name} Profil Image" style="object-fit: cover" loading="lazy" />`;
+                                                    html += `<img src="{{ asset('demo1/dist') }}/assets/media/svg/avatars/blank.svg" alt="${n.user.name} Profil Image" style="object-fit: cover" loading="lazy" />`;
 
                                                 }
                                                 
